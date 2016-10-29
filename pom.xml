@@ -24,18 +24,14 @@
 	<artifactId>admoneo</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-		<!-- TODO project name  -->
-	<name>quickstart</name>
-	<description></description>
-	<!--
-		<organization>
-			<name>company name</name>
-			<url>company url</url>
-		</organization>
-	-->
+	
+	<!-- TODO project name  -->
+	<name>Admoneo</name>
+	<description>TODO Web App project</description>
+
 	<licenses>
 		<license>
-			<name>The Apache Software License, Version 2.0</name>
+		    <name>The Apache Software License, Version 2.0</name>
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
 		</license>
@@ -45,6 +41,9 @@
 		<jetty9.version>9.2.19.v20160908</jetty9.version>
 		<log4j.version>2.6.2</log4j.version>
 		<junit.version>4.12</junit.version>
+		<hibernate.version>5.2.1.Final</hibernate.version>
+		<postgresql.version>9.4-1200-jdbc41</postgresql.version>
+		<hibernate-persistence.version>1.0.1.Final</hibernate-persistence.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
 		<wtp.version>none</wtp.version>
@@ -83,6 +82,33 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!--  HIBERNATE DEPENDENCIES  -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>${hibernate-persistence.version}</version>
+        </dependency>
+
+        <!--  Java Persistence -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <!-- POSTGRESQL DEPENDENCIES  -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
 
 		<!--  JETTY DEPENDENCIES FOR TESTING  -->
 		<dependency>
@@ -178,4 +204,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	</project>
+</project>
