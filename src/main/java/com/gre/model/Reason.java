@@ -56,7 +56,11 @@ public class Reason {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+<<<<<<< HEAD
 	public boolean isActive() {
+=======
+	public boolean getIsActiveValue() {
+>>>>>>> f7af7277285c5a439ea1bb656a7bfeee4fec74ef
 		return isActive;
 	}
 	public void setActive(boolean isActive) {
