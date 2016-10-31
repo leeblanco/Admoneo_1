@@ -8,7 +8,7 @@ CREATE TABLE Users (
    )
 
 
-CREATE TABLE ProjectStatus (
+CREATE TABLE Status (
    statusId serial PRIMARY KEY NOT NULL,
    status varchar (50),
    isActive boolean,
@@ -18,7 +18,7 @@ CREATE TABLE ProjectStatus (
    createdDate date NOT NULL,
 )
 
-CREATE TABLE ProjectReason (
+CREATE TABLE Reason (
    reasonId serial PRIMARY KEY NOT NULL,
    reason varchar (50),
    isActive boolean,
