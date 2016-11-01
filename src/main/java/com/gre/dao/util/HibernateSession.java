@@ -46,8 +46,14 @@ public class HibernateSession {
      * */
     public Session getSession(){
         
-        if (session == null){	
-            session = initSessionFactory().openSession();        	
+        if (session == null){
+            
+            session = initSessionFactory().openSession();
+            
+        }else{
+            
+            session = initSessionFactory().getCurrentSession();
+            
         }
     
         return session;
