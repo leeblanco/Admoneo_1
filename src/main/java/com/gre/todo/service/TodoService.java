@@ -1,11 +1,11 @@
-package com.gre.todo.dao;
+package com.gre.todo.service;
 
 import java.util.Date;
 import java.util.List;
 
 import com.gre.model.Todo;
 
-public interface TodoDao {
+public interface TodoService {
 
     public boolean addTodo(Todo todo);
 
