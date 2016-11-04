@@ -2,15 +2,16 @@ package com.gre.user.service;
 
 import java.util.List;
 
-import com.gre.model.User;
+import com.gre.model.Users;
 
 public interface UserService {
 
-    public boolean add(User user);
+    public boolean add(Users user);
 
-    public List<User> searchAllUsers();
+    public List<Users> searchAllUsers();
 
-    public User searchUser(int id);
+    public Users searchUser(int id);
 
-    public User searchUser(String name);
+    public Users searchUser(String name);
+    
 }

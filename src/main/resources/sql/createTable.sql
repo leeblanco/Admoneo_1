@@ -2,7 +2,8 @@ CREATE TABLE Users (
    userId serial PRIMARY KEY NOT NULL,
    firstname varchar (30),
    lastname varchar (30),
-   email varchar (30),
+   email varchar (30) NOT NULL,
+   token varchar (30) NOT NULL,
    createdDate date NOT NULL,
    updatedDate date NOT NULL
    )

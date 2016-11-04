@@ -23,14 +23,13 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
     final static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
     /**
-     * Adds new task in Todo table using the input param Returns true if the
+     * Adds new task in Todo table using the input param task. Returns true if the
      * insert is successful and false if the insert fails or status object is
      * null.
      * 
      * @author Lee
-     * @param Todo
-     *            todo
-     * @return boolean
+     * @param task   updates a tasks using all the information on tasks object 
+     * @return update   returns true if update is successful otherwise false
      */
     public boolean addTodo(Todo task) {
 
@@ -67,12 +66,14 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
                 // set update to true successfully committed transaction
                 update = true;
+                logger.debug("Setting update to "+ update);
 
             } catch (Exception hEx) {
 
                 logger.error("Error encountered in inserting newTask Object");
                 // Status Update failed
                 update = false;
+                logger.debug("Setting update to "+ update);
 
                 if (session.getTransaction().isActive()) {
                     session.getTransaction().rollback();
@@ -95,9 +96,8 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
      * null.
      * 
      * @author Lee
-     * @param Todo
-     *            todo
-     * @return boolean
+     * @param task   updates a tasks using all the information on tasks object 
+     * @return update   returns true if update is successful otherwise false
      */
     public boolean updateTodo(Todo task) {
 
@@ -134,12 +134,14 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
                 // set update to true successfully committed transaction
                 update = true;
+                logger.debug("Setting update to "+ update);
 
             } catch (Exception hEx) {
 
                 logger.error("Error encountered in updating newTask Object");
                 // Status Update failed
                 update = false;
+                logger.debug("Setting update to "+ update);
 
                 if (session.getTransaction().isActive()) {
                     session.getTransaction().rollback();
@@ -159,8 +161,8 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
     /**
      * Search all tasks in Todo table
      * 
-     * @return List<Todo>
      * @author Lee
+     * @return todoList   returns the list of tasks or todo from todo table
      */
     public List<Todo> retrieveTodo() {
 
@@ -195,8 +197,8 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
      * lists of tasks that matches the project name provided.
      * 
      * @param String
-     *            projectName
-     * @return List<Todo>
+     * @param projectName   name of the project to be searched
+     * @return listOfTasks  returns all tasks from todo table
      * @author Lee
      */
     public List<Todo> searchTodoByProjectName(String projectName) {
@@ -243,10 +245,9 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
      * Retrieves a todo task using project search parameter. This method returns
      * lists of tasks that matches the project name provided.
      * 
-     * @param String
-     *            projectName
-     * @return List<Todo>
      * @author Lee
+     * @param projectName    name of the project to look for in todo table
+     * @return listOfTasks   returns list of tasks retrieved from todo table
      */
     public List<Todo> searchTodoByProjectOwner(String projectOwner) {
 

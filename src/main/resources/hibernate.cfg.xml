@@ -24,8 +24,15 @@
         <!-- JDBC connection pool just use one  -->
         <property name="connection.pool_size">1</property>
         
-        <!-- Annotated entity classes -->
-        <mapping class="com.gre.model"/>
+        <!-- Specify hibernate context -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+        <!-- Annotated entity classes 
+        <mapping class="com.gre.model.Users"/> -->
+        
+        <!-- Users mapping resource -->
+        <mapping resource="com/gre/model/Users.hbm.xml" />
+        <mapping resource="com/gre/model/Todo.hbm.xml" />
         
     </session-factory>
 </hibernate-configuration>

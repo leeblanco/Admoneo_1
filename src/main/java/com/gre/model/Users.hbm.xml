@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.gre.model.Users" table="Users" catalog="tests">
+      <id name="userId" type="java.lang.Integer">
+         <column name="userId" />
+         <generator class="identity" />
+      </id>
+      <property name="firstname" type="string">
+         <column name="firstName" length="30" />
+      </property>
+      <property name="lastname" type="string">
+         <column name="lastName" length="30" />
+      </property>
+      <property name="email" type="string">
+         <column name="email" length="30" />
+      </property>
+      <property name="token" type="string">
+         <column name="token" length="30" />
+      </property>
+      <property name="createdDate" type="date">
+         <column name="createdDate" />
+      </property>
+      <property name="updatedDate" type="date">
+         <column name="updatedDate" />
+      </property>
+   </class>
+</hibernate-mapping>

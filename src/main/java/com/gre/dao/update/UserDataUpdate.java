@@ -5,9 +5,9 @@ import org.hibernate.Transaction;
 import org.jboss.logging.Logger;
 
 import com.gre.dao.util.HibernateSession;
-import com.gre.model.User;
+import com.gre.model.Users;
 
-public class UserDataUpdate extends HibernateSession implements DataUpdate<User> {
+public class UserDataUpdate extends HibernateSession implements DataUpdate<Users> {
 
     final static Logger logger = Logger.getLogger(UserDataUpdate.class);
 
@@ -22,7 +22,7 @@ public class UserDataUpdate extends HibernateSession implements DataUpdate<User>
 	 * @return boolean
 	 * */
 	@Override
-    public boolean update(User user){
+    public boolean update(Users user){
         
         boolean update = false;
         
@@ -39,7 +39,7 @@ public class UserDataUpdate extends HibernateSession implements DataUpdate<User>
     	        //Set User object with the new input parameters from User input
     	        logger.info("Update User Object with new values ");
     	        
-    	        User newUser = new User();
+    	        Users newUser = new Users();
                 newUser.setFirstname(user.getFirstname());
                 newUser.setLastname(user.getLastname());
                 newUser.setEmail(user.getEmail());

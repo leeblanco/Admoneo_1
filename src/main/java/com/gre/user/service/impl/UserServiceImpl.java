@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
-import com.gre.model.User;
+import com.gre.model.Users;
 import com.gre.user.dao.UserDao;
 import com.gre.user.dao.impl.UserDaoImpl;
 import com.gre.user.service.UserService;
@@ -23,12 +23,12 @@ public class UserServiceImpl implements UserService {
      * value will be false and returned to the caller. If the DB inserto into
      * User table is successful it will return true otherwise false.
      * 
-     * @param User user
-     * @return boolean
+     * @param user   contains field information from homepage register form
+     * @return registerStatus   returns true if its added successfully otherwise false
      * @author Lee
      */
     @Override
-    public boolean add(User user) {
+    public boolean add(Users user) {
 
         boolean registerStatus = false;
 
@@ -36,6 +36,10 @@ public class UserServiceImpl implements UserService {
 
             logger.info("Email Address is empty or null " + user.getEmail());
 
+        } else if ( ("".equalsIgnoreCase(user.getToken())) || (null == user.getToken()) ){
+            
+            logger.info("Token is empty or null " + user.getToken());
+            
         } else {
 
             logger.info("Print User information ");
@@ -62,13 +66,13 @@ public class UserServiceImpl implements UserService {
     /**
      * This method will retrieve all users currently registered on User table
      *  
-     * @return List<User>
      * @author Lee
+     * @return userList   returns all users retrieved from UserDao call to User table
      * */
     @Override
-    public List<User> searchAllUsers() {
+    public List<Users> searchAllUsers() {
         
-        List<User> userList = new ArrayList<User>();
+        List<Users> userList = new ArrayList<Users>();
         
         userDao = new UserDaoImpl();
         
@@ -76,7 +80,7 @@ public class UserServiceImpl implements UserService {
         userList.addAll(userDao.searchAllUsers());
         
         logger.info("List all users retrieved ");
-        for (User entry: userList){
+        for (Users entry: userList){
             
             printAllUserFields(entry);
             
@@ -94,9 +98,9 @@ public class UserServiceImpl implements UserService {
      * 
      * */
     @Override
-    public User searchUser(int id) {
+    public Users searchUser(int id) {
         
-        User retrievedUser = new User();
+        Users retrievedUser = new Users();
         
         userDao = new UserDaoImpl();
         
@@ -124,8 +128,8 @@ public class UserServiceImpl implements UserService {
      *  @author User 
      * */
     @Override
-    public User searchUser(String name) {
-        User retrievedUser = new User();
+    public Users searchUser(String name) {
+        Users retrievedUser = new Users();
         
         userDao = new UserDaoImpl();
         
@@ -148,11 +152,11 @@ public class UserServiceImpl implements UserService {
     /**
      * This helper method is just used to print all user field values
      * 
-     * @param User user
+     * @param Users user
      * @return void
      * @author Lee
      * */
-    public void printAllUserFields(User user){
+    public void printAllUserFields(Users user){
         
         logger.info("Id : "+ user.getUserId());
         logger.info("First Name : " + user.getFirstname());
