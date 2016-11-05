@@ -10,8 +10,8 @@ public interface UserService {
 
     public List<Users> searchAllUsers();
 
-    public Users searchUser(int id);
+    public Users searchUserById(int id);
 
-    public Users searchUser(String name);
+    public Users searchUserByName(String name);
     
 }

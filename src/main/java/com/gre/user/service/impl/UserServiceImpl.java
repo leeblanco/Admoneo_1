@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
      * 
      * */
     @Override
-    public Users searchUser(int id) {
+    public Users searchUserById(int id) {
         
         Users retrievedUser = new Users();
         
@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
             
         }else{
             
-            retrievedUser = userDao.searchUser(id);
+            retrievedUser = userDao.searchUserById(id);
         
             printAllUserFields(retrievedUser);
             
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
      *  @author User 
      * */
     @Override
-    public Users searchUser(String name) {
+    public Users searchUserByName(String name) {
         Users retrievedUser = new Users();
         
         userDao = new UserDaoImpl();
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
             
         }else{
             
-            retrievedUser = userDao.searchUser(name);
+            retrievedUser = userDao.searchUserByName(name);
         
             printAllUserFields(retrievedUser);
             

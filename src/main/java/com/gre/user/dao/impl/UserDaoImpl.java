@@ -99,7 +99,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
             Transaction tx = session.getTransaction();
             tx.begin();
 
-            listOfUsers = session.createQuery("from User").list();
+            listOfUsers = session.createQuery("from Users").list();
 
             tx.commit();
 
@@ -119,10 +119,10 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
      * This method will search a specific user on User table using the id
      * 
      * @author Lee
-     * @param id   user id to be retrieved
+     * @param userId   user id to be retrieved
      * @return User returns user object
      */
-    public Users searchUser(int id) {
+    public Users searchUserById(int userId) {
 
         Users user = new Users();
         Session session = getSession();
@@ -131,11 +131,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
             Transaction tx = session.beginTransaction();
 
-            String sql = "select firstname, lastname, email, createddate, updateddate from User where userid= :id";
+            String sql = "select firstname, lastname, email, createddate, updateddate from Users where userId = :userId";
             logger.info("Search by ID query : " + sql);
 
             Query query = session.createSQLQuery(sql);
-            query.setParameter("userid", id);
+            query.setParameter("userId", userId);
 
             // Should only be one
             int noOfResult = query.executeUpdate();
@@ -181,7 +181,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
      * @return User   user object retrieved using input param name 
      * @author Lee
      */
-    public Users searchUser(String name) {
+    public Users searchUserByName(String name) {
 
         Users user = new Users();
         Session session = getSession();
@@ -190,7 +190,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
             Transaction tx = session.beginTransaction();
 
-            String sql = "select firstname, lastname, email, createddate, updateddate from User where name = :name";
+            String sql = "select firstname, lastname, email, createddate, updateddate from User where firstName = :name";
             logger.info("Search by name query");
 
             Query query = session.createSQLQuery(sql);
