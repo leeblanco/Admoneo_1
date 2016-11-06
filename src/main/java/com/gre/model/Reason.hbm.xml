@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.gre.model.Reason" table="Reason" catalog="tests">
+      <id name="reasonId" type="java.lang.Integer">
+         <column name="reasonId" />
+         <generator class="identity" />
+      </id>
+      <property name="reason" type="string">
+         <column name="reason" length="30" />
+      </property>
+      <property name="isActive" type="yes_no">
+         <column name="isActive" />
+      </property>
+      <property name="createdBy" type="string">
+         <column name="createdBy" length="60"/>
+      </property>
+      <property name="updatedBy" type="string">
+         <column name="updatedBy" length="60"/>
+      </property>
+      <property name="createdDate" type="date">
+         <column name="createdDate" />
+      </property>
+      <property name="updatedDate" type="date">
+         <column name="updatedDate" />
+      </property>
+   </class>
+</hibernate-mapping>
