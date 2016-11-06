@@ -33,6 +33,8 @@ public class HibernateSession {
             configuration.addResource("com/gre/model/Users.hbm.xml");
             configuration.addResource("com/gre/model/Priorities.hbm.xml");
             configuration.addResource("com/gre/model/Todo.hbm.xml");
+            configuration.addResource("com/gre/model/Reason.hbm.xml");
+            configuration.addResource("com/gre/model/Status.hbm.xml");
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

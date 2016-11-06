@@ -14,7 +14,6 @@ import com.gre.dao.util.HibernateSession;
 import com.gre.model.Users;
 import com.gre.user.dao.UserDao;
 
-
 public class UserDaoImpl extends HibernateSession implements UserDao {
 
    final static Logger logger = Logger.getLogger(UserDaoImpl.class);
@@ -134,30 +133,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          Transaction tx = session.beginTransaction();
 
-         String sql = "select firstname, lastname, email, createddate, updateddate from Users where userId = :userId";
-         logger.info("Search by ID query : " + sql);
-
-         //Query query = session.createSQLQuery(sql);
-         //query.setParameter("userId", userId);
-         
          user = (Users) session.get(Users.class, userId);
-
-         // Should only be one
-         //int noOfResult = query.executeUpdate();
-         //logger.debug("Number of results returned: " + noOfResult);
-
-         //List<Users> retrievedUser = query.list();
-
-         //for (Users entry : retrievedUser) {
-
-            //user.setUserId(entry.getUserId());
-           // user.setFirstname(entry.getFirstname());
-           // user.setLastname(entry.getLastname());
-          //  user.setEmail(entry.getEmail());
-          //  user.setCreatedDate(entry.getCreatedDate());
-           // user.setUpdatedDate(entry.getCreatedDate());
-
-         //}
 
          tx.commit();
 

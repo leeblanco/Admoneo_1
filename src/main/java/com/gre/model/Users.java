@@ -20,83 +20,97 @@ import java.util.Date;
 @Table(name = "Users")
 public class Users {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
-    int userId;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "userId")
+   int userId;
 
-    @Column(name = "firstname")
-    String firstname;
+   @Column(name = "firstname")
+   String firstname;
 
-    @Column(name = "lastname")
-    String lastname;
+   @Column(name = "lastname")
+   String lastname;
 
-    @Column(name = "email")
-    String email;
+   @Column(name = "email")
+   String email;
 
-    @Column(name = "token")
-    String token;
+   @Column(name = "token")
+   String token;
 
-    @Column(name = "createdDate")
-    Date createdDate;
+   @Column(name = "createdDate")
+   Date createdDate;
 
-    @Column(name = "updatedDate")
-    Date updatedDate;
+   @Column(name = "updatedDate")
+   Date updatedDate;
 
-    public int getUserId() {
-        return userId;
-    }
+   public int getUserId() {
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+      return userId;
+   }
 
-    public String getFirstname() {
-        return firstname;
-    }
+   public void setUserId(int userId) {
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+      this.userId = userId;
+   }
 
-    public String getLastname() {
-        return lastname;
-    }
+   public String getFirstname() {
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
+      return firstname;
+   }
 
-    public String getEmail() {
-        return email;
-    }
+   public void setFirstname(String firstname) {
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+      this.firstname = firstname;
+   }
 
-    public String getToken() {
-        return token;
-    }
+   public String getLastname() {
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+      return lastname;
+   }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
+   public void setLastname(String lastname) {
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+      this.lastname = lastname;
+   }
 
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
+   public String getEmail() {
 
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
+      return email;
+   }
+
+   public void setEmail(String email) {
+
+      this.email = email;
+   }
+
+   public String getToken() {
+
+      return token;
+   }
+
+   public void setToken(String token) {
+
+      this.token = token;
+   }
+
+   public Date getCreatedDate() {
+
+      return createdDate;
+   }
+
+   public void setCreatedDate(Date createdDate) {
+
+      this.createdDate = createdDate;
+   }
+
+   public Date getUpdatedDate() {
+
+      return updatedDate;
+   }
+
+   public void setUpdatedDate(Date updatedDate) {
+
+      this.updatedDate = updatedDate;
+   }
 
 }

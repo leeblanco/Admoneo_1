@@ -153,13 +153,13 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
             }
 
             logger.error(hEx);
-            
+
          }
       } else {
 
          logger.info("Task object is null : " + task);
          update = false;
-         
+
       }
       return update;
    }
@@ -220,12 +220,12 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          StringBuilder sql = new StringBuilder();
          sql.append("select todoId, projectname, projectowner, statusid, reasonid,");
          sql.append("description, completionDate, createdDate, updatedDate,");
-         sql.append("createdBy, updatedBy from todo where projectname = :projectName");
+         sql.append("createdBy, updatedBy from todo where projectname like ?1");
 
          logger.info("SQL Query to retrieve list of tasks based on project name search parameter: " + sql.toString());
 
-         Query query = session.createSQLQuery(sql.toString());
-         query.setParameter("projectname", projectName);
+         Query query = session.createQuery(sql.toString());
+         query.setParameter(1, "%" + projectName + "%");
 
          int noOfResult = query.executeUpdate();
          logger.debug("Number of results returned: " + noOfResult);
@@ -266,14 +266,14 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          StringBuilder sql = new StringBuilder();
-         sql.append("select todoId, projectname, projectowner, statusid, reasonid,");
-         sql.append("description, completionDate, createdDate, updatedDate,");
-         sql.append("createdBy, updatedBy from todo where projectowner = :projectOwner");
+         sql.append("select t.todoId, t.projectname, t.projectowner, t.statusid, t.reasonid,");
+         sql.append("t.description, t.priority, t.completionDate, t.createdDate, t.updatedDate,");
+         sql.append("t.createdBy, t.updatedBy from todo t where t.projectowner like ?1");
 
          logger.info("SQL Query to retrieve list of tasks based on project owner search parameter: " + sql.toString());
 
-         Query query = session.createSQLQuery(sql.toString());
-         query.setParameter("projectOwner", projectOwner);
+         Query query = session.createQuery(sql.toString());
+         query.setParameter(1, "%" + projectOwner + "%");
 
          int noOfResult = query.executeUpdate();
          logger.debug("Number of results returned: " + noOfResult);

@@ -25,44 +25,44 @@ public class HomePage extends WebPage {
 
    private static final long serialVersionUID = 1L;
    private static final Logger logger = Logger.getLogger(HomePage.class);
-   
+
    /*
-    * This will initialize Homepage with standard nav links such as
-    * Home, Status and Task.
+    * This will initialize Homepage with standard nav links such as Home, Status
+    * and Task.
     * 
     * @author Lee
-    * **/
+    **/
    public HomePage() {
 
       add(new RegisterForm("registerForm"));
-      
-      add(new Link ("Home") {
-         
+
+      add(new Link("Home") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new HomePage());
-            
+
          }
       });
 
-      add(new Link ("Task") {
-         
+      add(new Link("Task") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new ReminderPage());
-            
+
          }
       });
-      
-      add(new Link ("Status") {
-         
+
+      add(new Link("Status") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new Status());
-            
+
          }
       });
    }
@@ -77,40 +77,38 @@ public class HomePage extends WebPage {
       super(parameters);
 
       add(new RegisterForm("registerForm"));
-      
-      add(new Link ("Home") {
-         
+
+      add(new Link("Home") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new HomePage());
-            
+
          }
       });
 
-      add(new Link ("Task") {
-         
+      add(new Link("Task") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new ReminderPage());
-            
+
          }
       });
-      
-      add(new Link ("Status") {
-         
+
+      add(new Link("Status") {
+
          @Override
          public void onClick() {
-            
+
             setResponsePage(new Status());
-            
+
          }
       });
    }
 
-
-   
    /**
     * Inner class contains fields that corresponds to the html elements of
     * HomePage.html. These fields are accessible via wicket:id tag inside the
@@ -173,7 +171,7 @@ public class HomePage extends WebPage {
          String token = (String) tokenField.getDefaultModelObject();
 
          logger.info("Setting user object setter fields");
-         
+
          user.setFirstname(firstName);
          user.setLastname(lastName);
          user.setEmail(email);
@@ -181,10 +179,9 @@ public class HomePage extends WebPage {
          user.setUpdatedDate(new Date());
          user.setCreatedDate(new Date());
 
-         logger.info("First Name: "+ firstName+ " LastName: "+ lastName+ " Email: "+ email +
-               " Token: "+ token + " Created Date: "+ user.getCreatedDate()+ " UpdateDate: "+ 
-               user.getUpdatedDate() );
-         
+         logger.info("First Name: " + firstName + " LastName: " + lastName + " Email: " + email + " Token: " + token
+               + " Created Date: " + user.getCreatedDate() + " UpdateDate: " + user.getUpdatedDate());
+
          // Add registered user in DB
          status = newUser.add(user);
 
@@ -197,12 +194,11 @@ public class HomePage extends WebPage {
             loginStatusLbl.setDefaultModelObject("Something went wrong during registration process!");
 
          }
-         
+
          logger.info("Redirect to reminder page ");
          setResponsePage(new ReminderPage());
-         
+
       }
    }
-
 
 }
