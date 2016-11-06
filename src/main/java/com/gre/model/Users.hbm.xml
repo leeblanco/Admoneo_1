@@ -8,7 +8,7 @@
          <generator class="identity" />
       </id>
       <property name="firstname" type="string">
-         <column name="firstName" length="30" />
+         <column name="firstname" length="30" />
       </property>
       <property name="lastname" type="string">
          <column name="lastName" length="30" />

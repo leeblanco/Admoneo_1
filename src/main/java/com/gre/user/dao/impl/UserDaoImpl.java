@@ -14,269 +14,275 @@ import com.gre.dao.util.HibernateSession;
 import com.gre.model.Users;
 import com.gre.user.dao.UserDao;
 
+
 public class UserDaoImpl extends HibernateSession implements UserDao {
 
-    final static Logger logger = Logger.getLogger(UserDaoImpl.class);
+   final static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
-    /**
-     * Adds new user in User table using the input param Returns true if the
-     * insert is successful and false if the insert fails or status object is
-     * null.
-     * 
-     * @author Lee
-     * @param user   contains user information to be inserted in to database
-     *            
-     * @return update returns true if insert is successful otherwise false
-     */
-    @Override
-    public boolean add(Users user) {
+   /**
+    * Adds new user in User table using the input param Returns true if the
+    * insert is successful and false if the insert fails or status object is
+    * null.
+    * 
+    * @author Lee
+    * @param user
+    *           contains user information to be inserted in to database
+    * 
+    * @return update returns true if insert is successful otherwise false
+    */
+   @Override
+   public boolean add(Users user) {
 
-        boolean update = false;
+      boolean update = false;
 
-        if (user != null) {
+      if (user != null) {
 
-            logger.info("Insert New Value in User Table ");
-            Session session = getSession();
+         logger.info("Insert New Value in User Table ");
+         Session session = getSession();
 
-            try {
+         try {
 
-                Transaction trans = session.beginTransaction();
+            Transaction trans = session.beginTransaction();
 
-                // Set newStatus object with the new input parameters from
-                // status input param
-                logger.info("Insert Status Object with new values ");
-                Users newUser = new Users();
+            // Set newStatus object with the new input parameters from
+            // status input param
+            logger.info("Insert Status Object with new values ");
+            Users newUser = new Users();
 
-                newUser.setFirstname(user.getFirstname());
-                newUser.setLastname(user.getLastname());
-                newUser.setEmail(user.getEmail());
-                newUser.setToken(user.getToken());
-                newUser.setCreatedDate(user.getCreatedDate());
-                newUser.setUpdatedDate(user.getUpdatedDate());
+            newUser.setFirstname(user.getFirstname());
+            newUser.setLastname(user.getLastname());
+            newUser.setEmail(user.getEmail());
+            newUser.setToken(user.getToken());
+            newUser.setCreatedDate(user.getCreatedDate());
+            newUser.setUpdatedDate(user.getUpdatedDate());
 
-                logger.info("Insert User data into Database");
-                session.save(newUser);
-                trans.commit();
+            logger.info("Insert User data into Database");
+            session.save(newUser);
+            trans.commit();
 
-                // set update to true successfully committed transaction
-                update = true;
+            // set update to true successfully committed transaction
+            update = true;
 
-            } catch (Exception hEx) {
+         } catch (Exception hEx) {
 
-                logger.error("Error encountered in inserting NewUser Object");
-                // Status Update failed
-                update = false;
-
-                if (session.getTransaction().isActive()) {
-                    session.getTransaction().rollback();
-                    logger.info("Transaction rollback, newUser object is not inserted");
-                }
-
-                logger.error(hEx);
-            }
-        } else {
-
-            logger.info("status object is null : " + user);
+            logger.error("Error encountered in inserting NewUser Object");
+            // Status Update failed
             update = false;
-        }
-        return update;
-    }
 
-    /**
-     * This method will retrieve all user records in table
-     * 
-     * @author Lee
-     * @return listOfUsers   returns all users retrieved from User table
-     */
-    @Override
-    public List<Users> searchAllUsers() {
-
-        List<Users> listOfUsers = new ArrayList<Users>();
-
-        Session session = getSession();
-        try {
-
-            Transaction tx = session.getTransaction();
-            tx.begin();
-
-            listOfUsers = session.createQuery("from Users").list();
-
-            tx.commit();
-
-        } catch (HibernateException hEx) {
-
-            logger.error("Error encountered in retrieving user data " + hEx);
-
-        } finally {
-
-            session.close();
-        }
-
-        return listOfUsers;
-    }
-
-    /**
-     * This method will search a specific user on User table using the id
-     * 
-     * @author Lee
-     * @param userId   user id to be retrieved
-     * @return User returns user object
-     */
-    public Users searchUserById(int userId) {
-
-        Users user = new Users();
-        Session session = getSession();
-
-        try {
-
-            Transaction tx = session.beginTransaction();
-
-            String sql = "select firstname, lastname, email, createddate, updateddate from Users where userId = :userId";
-            logger.info("Search by ID query : " + sql);
-
-            Query query = session.createSQLQuery(sql);
-            query.setParameter("userId", userId);
-
-            // Should only be one
-            int noOfResult = query.executeUpdate();
-            logger.debug("Number of results returned: " + noOfResult);
-
-            List<Users> retrievedUser = query.list();
-
-            for (Users entry : retrievedUser) {
-
-                user.setUserId(entry.getUserId());
-                user.setFirstname(entry.getFirstname());
-                user.setLastname(entry.getLastname());
-                user.setEmail(entry.getEmail());
-                user.setCreatedDate(entry.getCreatedDate());
-                user.setUpdatedDate(entry.getCreatedDate());
-
+            if (session.getTransaction().isActive()) {
+               session.getTransaction().rollback();
+               logger.info("Transaction rollback, newUser object is not inserted");
             }
 
-            tx.commit();
+            logger.error(hEx);
+         }
+      } else {
 
-            logger.debug("UserID: " + user.getUserId() + " First name: " + user.getFirstname() + " LastName: "
-                    + user.getLastname() + " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
-                    + " CreatedDate: " + user.getCreatedDate());
+         logger.info("status object is null : " + user);
+         update = false;
+      }
+      return update;
+   }
 
-        } catch (Exception hEx) {
+   /**
+    * This method will retrieve all user records in table
+    * 
+    * @author Lee
+    * @return listOfUsers returns all users retrieved from User table
+    */
+   @Override
+   public List<Users> searchAllUsers() {
 
-            logger.error("There is a problem retrieving user record using id. " + hEx);
+      List<Users> listOfUsers = new ArrayList<Users>();
 
-        } finally {
+      Session session = getSession();
+      try {
 
-            session.close();
+         Transaction tx = session.getTransaction();
+         tx.begin();
 
-        }
+         listOfUsers = session.createQuery("from Users").list();
 
-        return user;
-    }
+         tx.commit();
 
-    /**
-     * This method will search a specific user on User table using customers
-     * name
-     * 
-     * @param name    user name to be searched
-     * @return User   user object retrieved using input param name 
-     * @author Lee
-     */
-    public Users searchUserByName(String name) {
+      } catch (HibernateException hEx) {
 
-        Users user = new Users();
-        Session session = getSession();
+         logger.error("Error encountered in retrieving user data " + hEx);
 
-        try {
+      } finally {
 
-            Transaction tx = session.beginTransaction();
+         session.close();
+      }
 
-            String sql = "select firstname, lastname, email, createddate, updateddate from User where firstName = :name";
-            logger.info("Search by name query");
+      return listOfUsers;
+   }
 
-            Query query = session.createSQLQuery(sql);
-            query.setParameter("name", name);
+   /**
+    * This method will search a specific user on User table using the id
+    * 
+    * @author Lee
+    * @param userId
+    *           user id to be retrieved
+    * @return User returns user object
+    */
+   public Users searchUserById(int userId) {
 
-            // Should only be one
-            int noOfResult = query.executeUpdate();
-            logger.debug("Number of results returned: " + noOfResult);
+      Users user = new Users();
+      Session session = getSession();
 
-            List<Users> retrievedUser = query.list();
-            logger.debug("RetrievedUserList contains : " + retrievedUser.size());
+      try {
 
-            for (Users entry : retrievedUser) {
+         Transaction tx = session.beginTransaction();
 
-                user.setUserId(entry.getUserId());
-                user.setFirstname(entry.getFirstname());
-                user.setLastname(entry.getLastname());
-                user.setEmail(entry.getEmail());
-                user.setCreatedDate(entry.getCreatedDate());
-                user.setUpdatedDate(entry.getCreatedDate());
+         String sql = "select firstname, lastname, email, createddate, updateddate from Users where userId = :userId";
+         logger.info("Search by ID query : " + sql);
 
-            }
+         //Query query = session.createSQLQuery(sql);
+         //query.setParameter("userId", userId);
+         
+         user = (Users) session.get(Users.class, userId);
 
-            tx.commit();
+         // Should only be one
+         //int noOfResult = query.executeUpdate();
+         //logger.debug("Number of results returned: " + noOfResult);
 
-            logger.debug("UserID: " + user.getUserId() + " First name: " + user.getFirstname() + " LastName: "
-                    + user.getLastname() + " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
-                    + " CreatedDate: " + user.getCreatedDate());
+         //List<Users> retrievedUser = query.list();
 
-        } catch (Exception hEx) {
+         //for (Users entry : retrievedUser) {
 
-            logger.error("There is a problem retrieving user record using name. " + hEx);
+            //user.setUserId(entry.getUserId());
+           // user.setFirstname(entry.getFirstname());
+           // user.setLastname(entry.getLastname());
+          //  user.setEmail(entry.getEmail());
+          //  user.setCreatedDate(entry.getCreatedDate());
+           // user.setUpdatedDate(entry.getCreatedDate());
 
-        } finally {
+         //}
 
-            session.close();
+         tx.commit();
 
-        }
+         logger.debug("UserID: " + user.getUserId() + " First name: " + user.getFirstname() + " LastName: "
+               + user.getLastname() + " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
+               + " CreatedDate: " + user.getCreatedDate());
 
-        return user;
-    }
+      } catch (Exception hEx) {
 
-    /**
-     * This method will search a token from User table based on 
-     * input param id. If no id is found it will return NA
-     * 
-     * @author Lee
-     * @param id   user id to be retrieved
-     * @return token   returns the token associate to the id  
-     */
-    public String retrieveToken(int id) {
+         logger.error("There is a problem retrieving user record using id. " + hEx);
 
-        Users user = new Users();
-        String token = "NA";
-        Session session = getSession();
+      } finally {
 
-        try {
+         session.close();
 
-            Transaction tx = session.beginTransaction();
+      }
 
-            String sql = "select token from User where userid = :id";
-            logger.info("Search by token query : " + sql);
+      return user;
+   }
 
-            Query query = session.createSQLQuery(sql);
-            query.setParameter("userid", id);
+   /**
+    * This method will search a specific user on User table using customers name
+    * 
+    * @param firstName
+    *           user name to be searched
+    * @return User user object retrieved using input param name
+    * @author Lee
+    */
+   public Users searchUserByName(String firstName) {
 
-            // Should only be one
-            int noOfResult = query.executeUpdate();
-            logger.debug("Number of results returned: " + noOfResult);
+      Users user = new Users();
+      Session session = getSession();
 
-            List<String> tokens = query.list();
-            
-            tx.commit();
+      try {
 
-            logger.debug("Token retrieved: " + token);
+         Transaction tx = session.beginTransaction();
 
-        } catch (Exception hEx) {
+         String sql = "select firstname, lastname, email, createddate, updateddate from User where firstName = :firstName";
+         logger.info("Search by name query");
 
-            logger.error("There is a problem retrieving user record using id. " + hEx);
+         Query query = session.createSQLQuery(sql);
+         query.setParameter("firstName", firstName);
 
-        } finally {
+         // Should only be one
+         int noOfResult = query.executeUpdate();
+         logger.debug("Number of results returned: " + noOfResult);
 
-            session.close();
+         List<Users> retrievedUser = query.list();
+         logger.debug("RetrievedUserList contains : " + retrievedUser.size());
 
-        }
+         for (Users entry : retrievedUser) {
 
-        return token;
-    }
+            user.setUserId(entry.getUserId());
+            user.setFirstname(entry.getFirstname());
+            user.setLastname(entry.getLastname());
+            user.setEmail(entry.getEmail());
+            user.setCreatedDate(entry.getCreatedDate());
+            user.setUpdatedDate(entry.getCreatedDate());
+
+         }
+
+         tx.commit();
+
+         logger.debug("UserID: " + user.getUserId() + " First name: " + user.getFirstname() + " LastName: "
+               + user.getLastname() + " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
+               + " CreatedDate: " + user.getCreatedDate());
+
+      } catch (Exception hEx) {
+
+         logger.error("There is a problem retrieving user record using name. " + hEx);
+
+      } finally {
+
+         session.close();
+
+      }
+
+      return user;
+   }
+
+   /**
+    * This method will search a token from User table based on input param id.
+    * If no id is found it will return NA
+    * 
+    * @author Lee
+    * @param id
+    *           user id to be retrieved
+    * @return token returns the token associate to the id
+    */
+   public String retrieveToken(int id) {
+
+      Users user = new Users();
+      String token = "NA";
+      Session session = getSession();
+
+      try {
+
+         Transaction tx = session.beginTransaction();
+
+         String sql = "select token from User where userid = :id";
+         logger.info("Search by token query : " + sql);
+
+         Query query = session.createSQLQuery(sql);
+         query.setParameter("userid", id);
+
+         // Should only be one
+         int noOfResult = query.executeUpdate();
+         logger.debug("Number of results returned: " + noOfResult);
+
+         List<String> tokens = query.list();
+
+         tx.commit();
+
+         logger.debug("Token retrieved: " + token);
+
+      } catch (Exception hEx) {
+
+         logger.error("There is a problem retrieving user record using id. " + hEx);
+
+      } finally {
+
+         session.close();
+
+      }
+
+      return token;
+   }
 }

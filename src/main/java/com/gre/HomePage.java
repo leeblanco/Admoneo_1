@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.jboss.logging.Logger;
 
 import com.gre.model.Users;
 import com.gre.user.service.UserService;
@@ -23,7 +24,14 @@ import com.gre.user.service.impl.UserServiceImpl;
 public class HomePage extends WebPage {
 
    private static final long serialVersionUID = 1L;
-
+   private static final Logger logger = Logger.getLogger(HomePage.class);
+   
+   /*
+    * This will initialize Homepage with standard nav links such as
+    * Home, Status and Task.
+    * 
+    * @author Lee
+    * **/
    public HomePage() {
 
       add(new RegisterForm("registerForm"));
@@ -164,6 +172,8 @@ public class HomePage extends WebPage {
          String email = (String) emailField.getDefaultModelObject();
          String token = (String) tokenField.getDefaultModelObject();
 
+         logger.info("Setting user object setter fields");
+         
          user.setFirstname(firstName);
          user.setLastname(lastName);
          user.setEmail(email);
@@ -171,6 +181,10 @@ public class HomePage extends WebPage {
          user.setUpdatedDate(new Date());
          user.setCreatedDate(new Date());
 
+         logger.info("First Name: "+ firstName+ " LastName: "+ lastName+ " Email: "+ email +
+               " Token: "+ token + " Created Date: "+ user.getCreatedDate()+ " UpdateDate: "+ 
+               user.getUpdatedDate() );
+         
          // Add registered user in DB
          status = newUser.add(user);
 
@@ -183,6 +197,10 @@ public class HomePage extends WebPage {
             loginStatusLbl.setDefaultModelObject("Something went wrong during registration process!");
 
          }
+         
+         logger.info("Redirect to reminder page ");
+         setResponsePage(new ReminderPage());
+         
       }
    }
 

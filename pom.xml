@@ -38,6 +38,7 @@
 	</licenses>
 	<properties>
 		<wicket.version>7.5.0</wicket.version>
+		<wicket.datetime.version>1.4.14</wicket.datetime.version>
 		<jetty9.version>9.2.19.v20160908</jetty9.version>
 		<log4j.version>2.6.2</log4j.version>
 		<junit.version>4.12</junit.version>
@@ -55,6 +56,11 @@
 			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-datetime</artifactId>
+            <version>${wicket.datetime.version}</version>
+        </dependency>
 		<!-- OPTIONAL DEPENDENCY
 		<dependency>
 			<groupId>org.apache.wicket</groupId>

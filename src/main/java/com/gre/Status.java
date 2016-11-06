@@ -27,7 +27,7 @@ public class Status extends WebPage {
          }
       };
       
-      Link task = new Link("task") {
+      Link task = new Link("Task") {
          
          @Override
          public void onClick() {

@@ -41,6 +41,9 @@ public class Todo {
 	@Column(name="description")
     String description;
 	
+	@Column(name="priority")
+	String priority;
+	
 	@Column(name="completionDate")
     Date completionDate;
 	
@@ -98,6 +101,14 @@ public class Todo {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public void setPriority(String priority){
+	   this.priority=priority;
+	}
+	
+	public String getPriority(){
+	   return priority;
 	}
 	
 	public void setDescription(String description) {

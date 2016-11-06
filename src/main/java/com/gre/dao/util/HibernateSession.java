@@ -31,6 +31,8 @@ public class HibernateSession {
         if (sessionFactory == null) {
             Configuration configuration = new Configuration();
             configuration.addResource("com/gre/model/Users.hbm.xml");
+            configuration.addResource("com/gre/model/Priorities.hbm.xml");
+            configuration.addResource("com/gre/model/Todo.hbm.xml");
             configuration.configure();
 
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
