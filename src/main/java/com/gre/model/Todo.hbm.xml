@@ -7,16 +7,16 @@
          <column name="todoid" />
          <generator class="identity" />
       </id>
-      <property name="projectname" type="string">
+      <property name="projectName" type="string">
          <column name="projectname" length="30" />
       </property>
-      <property name="projectowner" type="string">
+      <property name="projectOwner" type="string">
          <column name="projectowner" length="60" />
       </property>
-      <property name="statusid" type="java.lang.Integer">
+      <property name="statusId" type="java.lang.Integer">
          <column name="statusid" />
       </property>
-      <property name="reasonid" type="java.lang.Integer">
+      <property name="reasonId" type="java.lang.Integer">
          <column name="reasonid" />
       </property>
       <property name="description" type="string">
