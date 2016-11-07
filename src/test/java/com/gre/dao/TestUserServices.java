@@ -16,104 +16,104 @@ import com.gre.user.service.impl.UserServiceImpl;
 
 public class TestUserServices {
 
-    final static Logger logger = Logger.getLogger(TestUserServices.class);
+   final static Logger logger = Logger.getLogger(TestUserServices.class);
 
-    HibernateSession hibernate = new HibernateSession();
-    
-    TestUtil util = new TestUtil();
+   HibernateSession hibernate = new HibernateSession();
 
-    @Before
-    public void testHibernateSession() {
+   TestUtil util = new TestUtil();
 
-        Session session;
+   @Before
+   public void testHibernateSession() {
 
-        logger.info("Test for Hibernate session... Retrieve session object ");
+      Session session;
 
-        session = hibernate.getSession();
+      logger.info("Test for Hibernate session... Retrieve session object ");
 
-        if (session == null) {
+      session = hibernate.getSession();
 
-            logger.info("Session is null ");
+      if (session == null) {
 
-        } else {
-            logger.info("Session created");
-        }
-    }
+         logger.info("Session is null ");
 
-    @Test
-    public void testUserAdd() {
+      } else {
+         logger.info("Session created");
+      }
+   }
 
-        UserService testAdd = new UserServiceImpl();
+   @Test
+   public void testUserAdd() {
 
-        User user = new User();
+      UserService testAdd = new UserServiceImpl();
 
-        user.setFirstname("Dimaz");
-        user.setLastname(util.randomDataGen());
-        user.setEmail(util.randomDataGen()+"@alang");
-        user.setToken(util.randomDataGen());
-        user.setUpdatedDate(new Date());
-        user.setCreatedDate(new Date());
+      User user = new User();
 
-        logger.info("Add user object ");
+      user.setFirstname("Dimaz");
+      user.setLastname(util.randomDataGen());
+      user.setEmail(util.randomDataGen() + "@alang.com");
+      user.setToken(util.randomDataGen());
+      user.setUpdatedDate(new Date());
+      user.setCreatedDate(new Date());
 
-        boolean status = testAdd.add(user);
+      logger.info("Add user object ");
 
-        if (status == false) {
-            
-            logger.info("User object was not added successfully ");
-            
-        } else {
-            
-            logger.info("User was added successfully ");
-            
-        }
-    }
-    
-    @Test
-    public void testUserSearchAll() {
+      boolean status = testAdd.add(user);
 
-        List<User> listOfUsers = new ArrayList<User>();
-        UserService testUserSrv = new UserServiceImpl();
+      if (status == false) {
 
-        listOfUsers.addAll(testUserSrv.searchAllUsers());
+         logger.info("User object was not added successfully ");
 
-        logger.info("List all users: ");
-        for (User entries : listOfUsers) {
+      } else {
 
-            util.userPrintUtil(entries);
+         logger.info("User was added successfully ");
 
-        }
-    }
- 
-    @Test
-    public void testUserSearchById() {
-        
-        User user = new User();
-        UserService testUserSrv = new UserServiceImpl();
-        
-        logger.info("Search User with ID = 1 ");
-        user = testUserSrv.searchUserById(2);
-        
-        logger.info("Display user retrieved by ID ");
-        util.userPrintUtil(user);
-        
-    }
-    
-    @Test
-    public void testUserSearchByName() {
-        
-        User userById = new User();
-        User userByName = new User();
-        
-        UserService testUserSrv = new UserServiceImpl();
-        
-        logger.info("Retrieve user id equal to 1 ");
-        userById = testUserSrv.searchUserById(2);
-        
-        logger.info("Retrieve user by name equal to: "+ userById.getFirstname());
-        userByName = testUserSrv.searchUserByName(userById.getFirstname());
-        
-        util.userPrintUtil(userByName);
-        
-    }
+      }
+   }
+
+   @Test
+   public void testUserSearchAll() {
+
+      List<User> listOfUsers = new ArrayList<User>();
+      UserService testUserSrv = new UserServiceImpl();
+
+      listOfUsers.addAll(testUserSrv.searchAllUsers());
+
+      logger.info("List all users: ");
+      for (User entries : listOfUsers) {
+
+         util.userPrintUtil(entries);
+
+      }
+   }
+
+   @Test
+   public void testUserSearchById() {
+
+      User user = new User();
+      UserService testUserSrv = new UserServiceImpl();
+
+      logger.info("Search User with ID = 1 ");
+      user = testUserSrv.searchUserById(2);
+
+      logger.info("Display user retrieved by ID ");
+      util.userPrintUtil(user);
+
+   }
+
+   @Test
+   public void testUserSearchByName() {
+
+      User userById = new User();
+      User userByName = new User();
+
+      UserService testUserSrv = new UserServiceImpl();
+
+      logger.info("Retrieve user id equal to 1 ");
+      userById = testUserSrv.searchUserById(2);
+
+      logger.info("Retrieve user by name equal to: " + userById.getFirstname());
+      userByName = testUserSrv.searchUserByName(userById.getFirstname());
+
+      util.userPrintUtil(userByName);
+
+   }
 }

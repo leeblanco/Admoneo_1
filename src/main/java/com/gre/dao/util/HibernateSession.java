@@ -40,31 +40,7 @@ public class HibernateSession {
 
       return sessionFactory;
    }
-   
- /*  static {
 
-      try {
-         
-         Configuration configuration = new Configuration();
-         configuration.configure();
-
-         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-
-         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-      
-      }catch(Throwable ex){
-         
-         throw new ExceptionInInitializerError(ex);
-         
-      }
-   }*/
-
-   /**
-    * Retrieves the current hibernate session
-    * 
-    * @author Lee
-    */
-   
    public Session getSession() {
 
       if (session == null) {
@@ -78,20 +54,10 @@ public class HibernateSession {
       }
 
       return session;
-   } 
-   
+   }
 
-/*   public static SessionFactory getSession() throws HibernateException {
-      return sessionFactory;
-   }*/
-   
-   /**
-    * This method will close the current Hibernate session
-    * 
-    * @author Lee
-    */
-/*   public void shutdown() {
+   public void shutdown() {
 
       initSessionFactory().close();
-   }*/
+   }
 }
