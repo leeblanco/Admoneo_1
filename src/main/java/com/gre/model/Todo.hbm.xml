@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
    <class name="com.gre.model.Todo" table="Todo" catalog="tests">
-      <id name="todoid" type="java.lang.Integer">
+      <id name="todoId" type="java.lang.Integer">
          <column name="todoid" />
          <generator class="identity" />
       </id>
