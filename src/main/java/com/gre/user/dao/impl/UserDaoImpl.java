@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
 import org.jboss.logging.Logger;
 
 import com.gre.dao.util.HibernateSession;
-import com.gre.model.Users;
+import com.gre.model.User;
 import com.gre.user.dao.UserDao;
 
 public class UserDaoImpl extends HibernateSession implements UserDao {
@@ -30,7 +30,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
     * @return update returns true if insert is successful otherwise false
     */
    @Override
-   public boolean add(Users user) {
+   public boolean add(User user) {
 
       boolean update = false;
 
@@ -46,7 +46,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
             // Set newStatus object with the new input parameters from
             // status input param
             logger.info("Insert Status Object with new values ");
-            Users newUser = new Users();
+            User newUser = new User();
 
             newUser.setFirstname(user.getFirstname());
             newUser.setLastname(user.getLastname());
@@ -90,17 +90,19 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
     * @return listOfUsers returns all users retrieved from User table
     */
    @Override
-   public List<Users> searchAllUsers() {
+   public List<User> searchAllUsers() {
 
-      List<Users> listOfUsers = new ArrayList<Users>();
+      List<User> listOfUsers = new ArrayList<User>();
 
       Session session = getSession();
       try {
 
-         Transaction tx = session.getTransaction();
-         tx.begin();
+         Transaction tx = session.beginTransaction();
+         //tx.begin();
 
-         listOfUsers = session.createQuery("from Users").list();
+         String sql = "select firstname, lastname, email, token, createdDate, updatedDate from User";
+         listOfUsers = session.createQuery(sql).list();
+//         listOfUsers = session.createQuery("from Users").list();
 
          tx.commit();
 
@@ -124,16 +126,16 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
     *           user id to be retrieved
     * @return User returns user object
     */
-   public Users searchUserById(int userId) {
+   public User searchUserById(int userId) {
 
-      Users user = new Users();
+      User user = new User();
       Session session = getSession();
 
       try {
 
          Transaction tx = session.beginTransaction();
 
-         user = (Users) session.get(Users.class, userId);
+         user = (User) session.get(User.class, userId);
 
          tx.commit();
 
@@ -162,9 +164,9 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
     * @return User user object retrieved using input param name
     * @author Lee
     */
-   public Users searchUserByName(String firstName) {
+   public User searchUserByName(String firstName) {
 
-      Users user = new Users();
+      User user = new User();
       Session session = getSession();
 
       try {
@@ -181,10 +183,10 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
          int noOfResult = query.executeUpdate();
          logger.debug("Number of results returned: " + noOfResult);
 
-         List<Users> retrievedUser = query.list();
+         List<User> retrievedUser = query.list();
          logger.debug("RetrievedUserList contains : " + retrievedUser.size());
 
-         for (Users entry : retrievedUser) {
+         for (User entry : retrievedUser) {
 
             user.setUserId(entry.getUserId());
             user.setFirstname(entry.getFirstname());
@@ -225,7 +227,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
     */
    public String retrieveToken(int id) {
 
-      Users user = new Users();
+      User user = new User();
       String token = "NA";
       Session session = getSession();
 

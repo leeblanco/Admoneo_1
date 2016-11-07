@@ -44,7 +44,7 @@ public class ReasonDaoImpl extends HibernateSession implements ReasonDao{
     	        logger.info("Insert Status Object with new values ");
     	        Reason newReason = new Reason();
     	        newReason.setReason(reason.getReason());
-    	        newReason.setActive(reason.getIsActiveValue());
+    	        newReason.setIsActive(reason.getIsActive());
     	        newReason.setCreatedBy(reason.getCreatedBy());
     	        newReason.setUpdatedBy(reason.getUpdatedBy());
     	        newReason.setCreatedDate(reason.getCreatedDate());
@@ -106,7 +106,7 @@ public class ReasonDaoImpl extends HibernateSession implements ReasonDao{
     	        logger.info("Update Status Object with new values ");
     	        Reason newReason = new Reason();
     	        newReason.setReason(reason.getReason());
-    	        newReason.setActive(reason.getIsActiveValue());
+    	        newReason.setIsActive(reason.getIsActive());
     	        newReason.setCreatedBy(reason.getCreatedBy());
     	        newReason.setUpdatedBy(reason.getUpdatedBy());
     	        newReason.setCreatedDate(reason.getCreatedDate());

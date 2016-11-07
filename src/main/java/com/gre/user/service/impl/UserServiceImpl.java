@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
-import com.gre.model.Users;
+import com.gre.model.User;
 import com.gre.user.dao.UserDao;
 import com.gre.user.dao.impl.UserDaoImpl;
 import com.gre.user.service.UserService;
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
      * @author Lee
      */
     @Override
-    public boolean add(Users user) {
+    public boolean add(User user) {
 
         boolean registerStatus = false;
 
@@ -70,9 +70,9 @@ public class UserServiceImpl implements UserService {
      * @return userList   returns all users retrieved from UserDao call to User table
      * */
     @Override
-    public List<Users> searchAllUsers() {
+    public List<User> searchAllUsers() {
         
-        List<Users> userList = new ArrayList<Users>();
+        List<User> userList = new ArrayList<User>();
         
         userDao = new UserDaoImpl();
         
@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
         userList.addAll(userDao.searchAllUsers());
         
         logger.info("List all users retrieved ");
-        for (Users entry: userList){
+        for (User entry: userList){
             
             printAllUserFields(entry);
             
@@ -98,9 +98,9 @@ public class UserServiceImpl implements UserService {
      * 
      * */
     @Override
-    public Users searchUserById(int id) {
+    public User searchUserById(int id) {
         
-        Users retrievedUser = new Users();
+        User retrievedUser = new User();
         
         userDao = new UserDaoImpl();
         
@@ -128,8 +128,8 @@ public class UserServiceImpl implements UserService {
      *  @author User 
      * */
     @Override
-    public Users searchUserByName(String name) {
-        Users retrievedUser = new Users();
+    public User searchUserByName(String name) {
+        User retrievedUser = new User();
         
         userDao = new UserDaoImpl();
         
@@ -152,11 +152,11 @@ public class UserServiceImpl implements UserService {
     /**
      * This helper method is just used to print all user field values
      * 
-     * @param Users user
+     * @param User user
      * @return void
      * @author Lee
      * */
-    public void printAllUserFields(Users user){
+    public void printAllUserFields(User user){
         
         logger.info("Id : "+ user.getUserId());
         logger.info("First Name : " + user.getFirstname());

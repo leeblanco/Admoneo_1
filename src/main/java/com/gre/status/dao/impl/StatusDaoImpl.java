@@ -44,7 +44,7 @@ public class StatusDaoImpl extends HibernateSession implements StatusDao {
     	        logger.info("Insert Status Object with new values ");
     	        Status newStatus = new Status();
     	        newStatus.setStatus(status.getStatus());
-    	        newStatus.setActive(status.getIsActiveValue());
+    	        newStatus.setIsActive(status.getIsActive());
     	        newStatus.setCreatedBy(status.getCreatedBy());
     	        newStatus.setUpdatedBy(status.getUpdatedBy());
     	        newStatus.setCreatedDate(status.getCreatedDate());
@@ -106,7 +106,7 @@ public class StatusDaoImpl extends HibernateSession implements StatusDao {
     	        logger.info("Update Status Object with new values ");
     	        Status newStatus = new Status();
     	        newStatus.setStatus(status.getStatus());
-    	        newStatus.setActive(status.getIsActiveValue());
+    	        newStatus.setIsActive(status.getIsActive());
     	        newStatus.setCreatedBy(status.getCreatedBy());
     	        newStatus.setUpdatedBy(status.getUpdatedBy());
     	        newStatus.setCreatedDate(status.getCreatedDate());

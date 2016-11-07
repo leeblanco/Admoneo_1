@@ -10,8 +10,8 @@
       <property name="reason" type="string">
          <column name="reason" length="30" />
       </property>
-      <property name="isActive" type="yes_no">
-         <column name="isActive" />
+      <property name="isactive" type="yes_no">
+         <column name="isactive" />
       </property>
       <property name="createdBy" type="string">
          <column name="createdBy" length="60" />

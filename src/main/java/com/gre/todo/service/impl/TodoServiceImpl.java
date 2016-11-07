@@ -1,5 +1,6 @@
 package com.gre.todo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -85,22 +86,47 @@ public class TodoServiceImpl implements TodoService {
    @Override
    public List<Todo> retrieveTodo() {
 
-      // TODO Auto-generated method stub
-      return null;
+      TodoDao dao = new TodoDaoImpl();
+      
+      List<Todo> listOfTodo = new ArrayList<Todo>();
+      
+      logger.info("Retrieving all tasks in todo table");
+      
+      listOfTodo.addAll(dao.retrieveTodo());
+      
+      logger.info("Total number of tasks: "+ listOfTodo.size());
+      
+      return listOfTodo;
    }
 
    @Override
    public List<Todo> searchTodoByProjectName(String projectName) {
 
-      // TODO Auto-generated method stub
-      return null;
+      TodoDao dao = new TodoDaoImpl();
+      
+      List<Todo> listOfTodo = new ArrayList<Todo>();
+      
+      logger.info("Retrieve task by Project Name " );
+      listOfTodo.addAll(dao.searchTodoByProjectName(projectName));
+      
+      logger.info("Number of tasks by project name "+ listOfTodo.size());
+      
+      return listOfTodo;
    }
 
    @Override
    public List<Todo> searchTodoByProjectOwner(String ownerName) {
 
-      // TODO Auto-generated method stub
-      return null;
+      TodoDao dao = new TodoDaoImpl();
+      
+      List<Todo> listOfTodo = new ArrayList<Todo>();
+      
+      logger.info("Retrieve task by Project Owner " );
+      listOfTodo.addAll(dao.searchTodoByProjectOwner(ownerName));
+      
+      logger.info("Number of tasks by project owner "+ listOfTodo.size());
+      
+      return listOfTodo;
    }
 
    @Override

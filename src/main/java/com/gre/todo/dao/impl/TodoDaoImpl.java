@@ -181,7 +181,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          logger.info("Retrieve all tasks from Todo table ");
-         todoList = session.createQuery("from todo").list();
+         todoList = session.createQuery("from Todo").list();
 
          tx.commit();
 
@@ -220,7 +220,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          StringBuilder sql = new StringBuilder();
          sql.append("select todoId, projectname, projectowner, statusid, reasonid,");
          sql.append("description, completionDate, createdDate, updatedDate,");
-         sql.append("createdBy, updatedBy from todo where projectname like ?1");
+         sql.append("createdBy, updatedBy from Todo where projectname like ?1");
 
          logger.info("SQL Query to retrieve list of tasks based on project name search parameter: " + sql.toString());
 

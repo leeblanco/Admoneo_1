@@ -34,6 +34,8 @@
         <mapping resource="com/gre/model/Users.hbm.xml" />
         <mapping resource="com/gre/model/Todo.hbm.xml" />
         <mapping resource="com/gre/model/Priorities.hbm.xml"/>
+        <mapping resource="com/gre/model/Status.hbm.xml"/>
+        <mapping resource="com/gre/model/Reason.hbm.xml"/>
         
     </session-factory>
 </hibernate-configuration>

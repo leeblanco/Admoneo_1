@@ -12,7 +12,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.jboss.logging.Logger;
 
-import com.gre.model.Users;
+import com.gre.model.User;
 import com.gre.user.service.UserService;
 import com.gre.user.service.impl.UserServiceImpl;
 
@@ -160,7 +160,7 @@ public class HomePage extends WebPage {
        */
       public final void onSubmit() {
 
-         Users user = new Users();
+         User user = new User();
          UserService newUser = new UserServiceImpl();
 
          boolean status = false;

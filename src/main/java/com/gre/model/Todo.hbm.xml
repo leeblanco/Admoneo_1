@@ -3,21 +3,21 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
    <class name="com.gre.model.Todo" table="Todo" catalog="tests">
-      <id name="todoId" type="java.lang.Integer">
-         <column name="userId" />
+      <id name="todoid" type="java.lang.Integer">
+         <column name="todoid" />
          <generator class="identity" />
       </id>
-      <property name="projectName" type="string">
-         <column name="projectName" length="30" />
+      <property name="projectname" type="string">
+         <column name="projectname" length="30" />
       </property>
-      <property name="projectOwner" type="string">
-         <column name="projectOwner" length="60" />
+      <property name="projectowner" type="string">
+         <column name="projectowner" length="60" />
       </property>
-      <property name="statusId" type="java.lang.Integer">
-         <column name="statusId" />
+      <property name="statusid" type="java.lang.Integer">
+         <column name="statusid" />
       </property>
-      <property name="reasonId" type="java.lang.Integer">
-         <column name="reasonId" />
+      <property name="reasonid" type="java.lang.Integer">
+         <column name="reasonid" />
       </property>
       <property name="description" type="string">
          <column name="description" />
