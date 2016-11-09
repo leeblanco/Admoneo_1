@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jboss.logging.Logger;
@@ -98,11 +97,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
       try {
 
          Transaction tx = session.beginTransaction();
-         //tx.begin();
+         // tx.begin();
 
          String sql = "select firstname, lastname, email, token, createdDate, updatedDate from User";
          listOfUsers = session.createQuery(sql).list();
-//         listOfUsers = session.createQuery("from Users").list();
+         // listOfUsers = session.createQuery("from Users").list();
 
          tx.commit();
 
@@ -110,10 +109,10 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("Error encountered in retrieving user data " + hEx);
 
-      } finally {
+      } /*finally {
 
          session.close();
-      }
+      }*/
 
       return listOfUsers;
    }
@@ -147,11 +146,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } finally {
+      } /*finally {
 
          session.close();
 
-      }
+      }*/
 
       return user;
    }
@@ -173,11 +172,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          Transaction tx = session.beginTransaction();
 
-         String sql = "select firstname, lastname, email, createddate, updateddate from User where firstName = :firstName";
+         String sql = "select firstname, lastname, email, createddate, updateddate from User where firstname = :firstname";
          logger.info("Search by name query");
 
-         Query query = session.createSQLQuery(sql);
-         query.setParameter("firstName", firstName);
+         Query query = session.createQuery(sql);
+         query.setParameter("firstname", firstName);
 
          // Should only be one
          int noOfResult = query.executeUpdate();
@@ -207,11 +206,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using name. " + hEx);
 
-      } finally {
+      } /*finally {
 
          session.close();
 
-      }
+      }*/
 
       return user;
    }
@@ -255,11 +254,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } finally {
+      } /*finally {
 
          session.close();
 
-      }
+      }*/
 
       return token;
    }

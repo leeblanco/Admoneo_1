@@ -43,15 +43,15 @@ public class HibernateSession {
 
    public Session getSession() {
 
-      if (session == null) {
+      /*if (session == null) {
 
          session = initSessionFactory().openSession();
 
-      } else {
+      } else {*/
 
          session = initSessionFactory().getCurrentSession();
 
-      }
+//      }
 
       return session;
    }
