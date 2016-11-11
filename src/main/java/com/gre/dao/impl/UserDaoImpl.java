@@ -101,23 +101,53 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
       try {
 
          Transaction tx = session.beginTransaction();
-         // tx.begin();
 
          String sql = "select firstname, lastname, email, token, createdDate, updatedDate from User";
-         listOfUsers = session.createQuery(sql).list();
+//         listOfUsers = session.createQuery(sql).list();
          // listOfUsers = session.createQuery("from Users").list();
 
+         Query query = session.createQuery(sql);
+         
+         List<Object> retrievedUser = (List<Object>) query.list();
+         logger.debug("RetrievedUserList contains : " + retrievedUser.size());
+         
+         Iterator iterHibObjList = retrievedUser.iterator();
+         
+         /*
+          * Retrieved user sample value from query.list and iterate of the Object array
+          * using Iterator. Example value of Object array below
+          * 
+          * [Test1, lastnametest1, test1@test.com, 2016-11-05, 2016-11-05]
+          * [Test2, lastnametest2, test1@test.com, 2016-11-05, 2016-11-05]
+          * 
+          */
+         while (iterHibObjList.hasNext()) {
+            
+            Object[] obj = (Object[]) iterHibObjList.next();
+            
+            User user = new User();
+            
+//            user.setUserId(Integer.valueOf(String.valueOf(obj[0])));
+            user.setFirstname(String.valueOf(obj[0]));
+            user.setLastname(String.valueOf(obj[1]));
+            user.setEmail( String.valueOf(obj[2]));
+            user.setToken( String.valueOf(obj[3]));
+            
+            Date createdDate = Date.valueOf(util.formatStringToLocalDate(String.valueOf(obj[4])));
+            Date updatedDate = Date.valueOf(util.formatStringToLocalDate(String.valueOf(obj[5])));
+            user.setCreatedDate( createdDate );
+            user.setUpdatedDate( updatedDate );
+            
+            listOfUsers.add(user);
+         }
+                 
          tx.commit();
 
       } catch (HibernateException hEx) {
 
          logger.error("Error encountered in retrieving user data " + hEx);
 
-      } /*
-         * finally {
-         * 
-         * session.close(); }
-         */
+      }
 
       return listOfUsers;
    }
@@ -151,13 +181,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } /*
-         * finally {
-         * 
-         * session.close();
-         * 
-         * }
-         */
+      } 
 
       return user;
    }
@@ -267,13 +291,7 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } /*
-         * finally {
-         * 
-         * session.close();
-         * 
-         * }
-         */
+      }
 
       return token;
    }
