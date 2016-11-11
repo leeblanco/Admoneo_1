@@ -1,14 +1,14 @@
-package com.gre.user.service.impl;
+package com.gre.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.logging.Logger;
 
+import com.gre.dao.UserDao;
+import com.gre.dao.impl.UserDaoImpl;
 import com.gre.model.User;
-import com.gre.user.dao.UserDao;
-import com.gre.user.dao.impl.UserDaoImpl;
-import com.gre.user.service.UserService;
+import com.gre.service.UserService;
 
 public class UserServiceImpl implements UserService {
 

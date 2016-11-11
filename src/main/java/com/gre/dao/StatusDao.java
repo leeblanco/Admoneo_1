@@ -1,4 +1,4 @@
-package com.gre.status.dao;
+package com.gre.dao;
 
 import java.util.List;
 

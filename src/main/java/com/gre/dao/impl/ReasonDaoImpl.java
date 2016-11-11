@@ -1,4 +1,4 @@
-package com.gre.reason.dao.impl;
+package com.gre.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jboss.logging.Logger;
 
+import com.gre.dao.ReasonDao;
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.Reason;
-import com.gre.reason.dao.ReasonDao;
 
 public class ReasonDaoImpl extends HibernateSession implements ReasonDao{
 

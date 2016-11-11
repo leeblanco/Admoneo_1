@@ -1,4 +1,4 @@
-package com.gre.todo.dao;
+package com.gre.dao;
 
 import java.util.Date;
 import java.util.List;

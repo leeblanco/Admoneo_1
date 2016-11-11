@@ -11,8 +11,8 @@ import org.junit.Test;
 
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.User;
-import com.gre.user.service.UserService;
-import com.gre.user.service.impl.UserServiceImpl;
+import com.gre.service.UserService;
+import com.gre.service.impl.UserServiceImpl;
 
 public class TestUserServices {
 
@@ -49,7 +49,7 @@ public class TestUserServices {
 
       user.setFirstname("Dimaz");
       user.setLastname(util.randomDataGen());
-      user.setEmail(util.randomDataGen() + "@alang.com");
+      user.setEmail(util.randomDataGen() + "@alang.com  ");
       user.setToken(util.randomDataGen());
       user.setUpdatedDate(new Date());
       user.setCreatedDate(new Date());
@@ -107,11 +107,12 @@ public class TestUserServices {
 
       UserService testUserSrv = new UserServiceImpl();
 
-      logger.info("Retrieve user id equal to 1 ");
-      userById = testUserSrv.searchUserById(2);
+      //logger.info("Retrieve user id equal to 1 ");
+      //userById = testUserSrv.searchUserById(2);
 
       logger.info("Retrieve user by name equal to: " + userById.getFirstname());
-      userByName = testUserSrv.searchUserByName(userById.getFirstname());
+      logger.info("Retrieve user by name equal to: " + "Testing");
+      userByName = testUserSrv.searchUserByName("Testing");
 
       util.userPrintUtil(userByName);
 

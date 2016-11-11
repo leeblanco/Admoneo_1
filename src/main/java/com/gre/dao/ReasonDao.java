@@ -1,4 +1,4 @@
-package com.gre.reason.dao;
+package com.gre.dao;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.gre.dao.util;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -41,17 +40,15 @@ public class HibernateSession {
       return sessionFactory;
    }
 
+   /**
+    * Use getCurrentSession and let Hibernate manage the opening and closing of session
+    * 
+    * @author Lee
+    * @return Hibernate session
+    * */
    public Session getSession() {
 
-      /*if (session == null) {
-
-         session = initSessionFactory().openSession();
-
-      } else {*/
-
          session = initSessionFactory().getCurrentSession();
-
-//      }
 
       return session;
    }

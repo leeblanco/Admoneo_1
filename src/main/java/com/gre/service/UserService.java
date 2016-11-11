@@ -1,10 +1,10 @@
-package com.gre.user.dao;
+package com.gre.service;
 
 import java.util.List;
 
 import com.gre.model.User;
 
-public interface UserDao {
+public interface UserService {
 
     public boolean add(User user);
 
@@ -14,6 +14,4 @@ public interface UserDao {
 
     public User searchUserByName(String name);
     
-    public String retrieveToken(int id);
-
 }

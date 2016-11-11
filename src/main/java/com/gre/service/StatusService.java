@@ -1,4 +1,4 @@
-package com.gre.status.service;
+package com.gre.service;
 
 import java.util.List;
 

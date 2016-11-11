@@ -13,8 +13,8 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.jboss.logging.Logger;
 
 import com.gre.model.User;
-import com.gre.user.service.UserService;
-import com.gre.user.service.impl.UserServiceImpl;
+import com.gre.service.UserService;
+import com.gre.service.impl.UserServiceImpl;
 
 /**
  * Entry point class for apache wicket admoneo web application

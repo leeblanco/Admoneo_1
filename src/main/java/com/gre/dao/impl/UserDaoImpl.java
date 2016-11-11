@@ -1,6 +1,8 @@
-package com.gre.user.dao.impl;
+package com.gre.dao.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,14 +11,16 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jboss.logging.Logger;
 
+import com.gre.dao.UserDao;
+import com.gre.dao.util.DateUtility;
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.User;
-import com.gre.user.dao.UserDao;
 
 public class UserDaoImpl extends HibernateSession implements UserDao {
 
    final static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
+   private DateUtility util = new DateUtility();
    /**
     * Adds new user in User table using the input param Returns true if the
     * insert is successful and false if the insert fails or status object is
@@ -109,10 +113,11 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("Error encountered in retrieving user data " + hEx);
 
-      } /*finally {
-
-         session.close();
-      }*/
+      } /*
+         * finally {
+         * 
+         * session.close(); }
+         */
 
       return listOfUsers;
    }
@@ -146,11 +151,13 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } /*finally {
-
-         session.close();
-
-      }*/
+      } /*
+         * finally {
+         * 
+         * session.close();
+         * 
+         * }
+         */
 
       return user;
    }
@@ -172,45 +179,51 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          Transaction tx = session.beginTransaction();
 
-         String sql = "select firstname, lastname, email, createddate, updateddate from User where firstname = :firstname";
+         String sql = "select user.firstname, user.lastname, user.email, user.createdDate "+
+            ", user.updatedDate from User user where user.firstname = :firstname";
          logger.info("Search by name query");
 
          Query query = session.createQuery(sql);
          query.setParameter("firstname", firstName);
 
-         // Should only be one
-         int noOfResult = query.executeUpdate();
-         logger.debug("Number of results returned: " + noOfResult);
-
-         List<User> retrievedUser = query.list();
+         List<Object> retrievedUser = (List<Object>) query.list();
          logger.debug("RetrievedUserList contains : " + retrievedUser.size());
-
-         for (User entry : retrievedUser) {
-
-            user.setUserId(entry.getUserId());
-            user.setFirstname(entry.getFirstname());
-            user.setLastname(entry.getLastname());
-            user.setEmail(entry.getEmail());
-            user.setCreatedDate(entry.getCreatedDate());
-            user.setUpdatedDate(entry.getCreatedDate());
-
+         Iterator iterHibObjList = retrievedUser.iterator();
+         
+         /*
+          * Retrieved user sample value from query.list and iterate of the Object array
+          * using Iterator. Example value of Object array below
+          * 
+          * [Test1, lastnametest1, test1@test.com, 2016-11-05, 2016-11-05]
+          * [Test2, lastnametest2, test1@test.com, 2016-11-05, 2016-11-05]
+          * 
+          */
+         while (iterHibObjList.hasNext()) {
+            
+            Object[] obj = (Object[]) iterHibObjList.next();
+            
+            user.setFirstname(String.valueOf(obj[0]));
+            user.setLastname(String.valueOf(obj[1]));
+            user.setEmail( String.valueOf(obj[2]) );
+            
+            Date createdDate = Date.valueOf(util.formatStringToLocalDate(String.valueOf(obj[3])));
+            Date updatedDate = Date.valueOf(util.formatStringToLocalDate(String.valueOf(obj[4])));
+            user.setCreatedDate( createdDate );
+            user.setUpdatedDate( updatedDate );
+            
          }
-
+         
          tx.commit();
 
-         logger.debug("UserID: " + user.getUserId() + " First name: " + user.getFirstname() + " LastName: "
-               + user.getLastname() + " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
+         logger.debug("First name: " + user.getFirstname() + " LastName: "+ user.getLastname() +
+               " Email: " + user.getEmail() + " UpdatedDate: " + user.getCreatedDate()
                + " CreatedDate: " + user.getCreatedDate());
 
       } catch (Exception hEx) {
 
-         logger.error("There is a problem retrieving user record using name. " + hEx);
+         logger.error("There is a problem retrieving user record using firstname. " + hEx);
 
-      } /*finally {
-
-         session.close();
-
-      }*/
+      } 
 
       return user;
    }
@@ -254,11 +267,13 @@ public class UserDaoImpl extends HibernateSession implements UserDao {
 
          logger.error("There is a problem retrieving user record using id. " + hEx);
 
-      } /*finally {
-
-         session.close();
-
-      }*/
+      } /*
+         * finally {
+         * 
+         * session.close();
+         * 
+         * }
+         */
 
       return token;
    }

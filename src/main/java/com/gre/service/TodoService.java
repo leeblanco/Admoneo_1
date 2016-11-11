@@ -1,4 +1,4 @@
-package com.gre.todo.service;
+package com.gre.service;
 
 import java.util.Date;
 import java.util.List;

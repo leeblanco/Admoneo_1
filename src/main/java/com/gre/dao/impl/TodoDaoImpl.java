@@ -1,4 +1,4 @@
-package com.gre.todo.dao.impl;
+package com.gre.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,10 +13,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 
+import com.gre.dao.TodoDao;
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.Todo;
-import com.gre.todo.dao.TodoDao;
-import com.gre.user.dao.impl.UserDaoImpl;
 
 public class TodoDaoImpl extends HibernateSession implements TodoDao {
 

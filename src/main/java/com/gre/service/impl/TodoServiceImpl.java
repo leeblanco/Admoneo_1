@@ -1,4 +1,4 @@
-package com.gre.todo.service.impl;
+package com.gre.service.impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
+import com.gre.dao.TodoDao;
+import com.gre.dao.impl.TodoDaoImpl;
 import com.gre.model.Todo;
-import com.gre.todo.dao.TodoDao;
-import com.gre.todo.dao.impl.TodoDaoImpl;
-import com.gre.todo.service.TodoService;
+import com.gre.service.TodoService;
 
 /**
  * This class contains methods to insert update and retrieve tasks from Todo

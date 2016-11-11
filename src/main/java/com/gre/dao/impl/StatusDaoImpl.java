@@ -1,4 +1,4 @@
-package com.gre.status.dao.impl;
+package com.gre.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.gre.dao.StatusDao;
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.Status;
-import com.gre.status.dao.StatusDao;
 
 public class StatusDaoImpl extends HibernateSession implements StatusDao {
     

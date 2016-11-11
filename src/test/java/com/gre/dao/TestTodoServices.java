@@ -8,8 +8,8 @@ import org.jboss.logging.Logger;
 import org.junit.Test;
 
 import com.gre.model.Todo;
-import com.gre.todo.service.TodoService;
-import com.gre.todo.service.impl.TodoServiceImpl;
+import com.gre.service.TodoService;
+import com.gre.service.impl.TodoServiceImpl;
 
 public class TestTodoServices {
 
