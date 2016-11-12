@@ -41,7 +41,7 @@ public class ReasonDataUpdate extends HibernateSession implements DataUpdate<Rea
     	        logger.info("Update Status Object with new values ");
     	        Reason newReason = new Reason();
     	        newReason.setReason(reason.getReason());
-    	        newReason.setActive(reason.getIsActiveValue());
+    	        newReason.setIsActive(reason.getIsActive());
     	        newReason.setCreatedBy(reason.getCreatedBy());
     	        newReason.setUpdatedBy(reason.getUpdatedBy());
     	        newReason.setCreatedDate(reason.getCreatedDate());

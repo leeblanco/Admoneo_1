@@ -2,25 +2,28 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-   <class name="com.gre.model.Todo" table="Todo" catalog="tests">
+   <class name="com.gre.model.Todo" table="Todo" >
       <id name="todoId" type="java.lang.Integer">
-         <column name="userId" />
+         <column name="todoid" />
          <generator class="identity" />
       </id>
       <property name="projectName" type="string">
-         <column name="projectName" length="30" />
+         <column name="projectname" length="30" />
       </property>
       <property name="projectOwner" type="string">
-         <column name="projectOwner" length="60" />
+         <column name="projectowner" length="60" />
       </property>
       <property name="statusId" type="java.lang.Integer">
-         <column name="statusId" />
+         <column name="statusid" />
       </property>
       <property name="reasonId" type="java.lang.Integer">
-         <column name="reasonId" />
+         <column name="reasonid" />
       </property>
       <property name="description" type="string">
          <column name="description" />
+      </property>
+      <property name="priority" type="string">
+         <column name="priority" />
       </property>
       <property name="completionDate" type="date">
          <column name="completionDate" />

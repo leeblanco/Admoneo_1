@@ -11,7 +11,7 @@
          <column name="reason" length="30" />
       </property>
       <property name="isActive" type="yes_no">
-         <column name="isActive" />
+         <column name="isactive" />
       </property>
       <property name="createdBy" type="string">
          <column name="createdBy" length="60" />

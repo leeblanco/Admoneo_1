@@ -40,7 +40,7 @@ public class StatusDataUpdate extends HibernateSession implements DataUpdate<Sta
 	            logger.info("Update Status Object with new values ");
 	            Status newStatus = new Status();
 	            newStatus.setStatus(status.getStatus());
-	            newStatus.setActive(status.getIsActiveValue());
+	            newStatus.setIsActive(status.getIsActive());
 	            newStatus.setCreatedBy(status.getCreatedBy());
 	            newStatus.setUpdatedBy(status.getUpdatedBy());
 	            newStatus.setCreatedDate(status.getCreatedDate());

@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-   <class name="com.gre.model.Users" table="Users" catalog="tests">
+   <class name="com.gre.model.User" table="Users">
       <id name="userId" type="java.lang.Integer">
-         <column name="userId" />
+         <column name="userid" />
          <generator class="identity" />
       </id>
       <property name="firstname" type="string">

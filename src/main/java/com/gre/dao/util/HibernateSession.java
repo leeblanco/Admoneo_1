@@ -16,61 +16,45 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateSession {
 
-    private static SessionFactory sessionFactory;
-    private static ServiceRegistry serviceRegistry;
-    private static Session session;
+   private static SessionFactory sessionFactory;
+   private static ServiceRegistry serviceRegistry;
+   private static Session session;
 
-    /**
-     * This method will initialize SessionFactory
-     * 
-     * @author Lee
-     * @return SessionFactory
-     */
-    private synchronized SessionFactory initSessionFactory() {
+   /**
+    * This method will initialize SessionFactory
+    * 
+    * @author Lee
+    * @return SessionFactory
+    */
+   private synchronized SessionFactory initSessionFactory() {
 
-        if (sessionFactory == null) {
-            Configuration configuration = new Configuration();
-            configuration.addResource("com/gre/model/Users.hbm.xml");
-            configuration.addResource("com/gre/model/Priorities.hbm.xml");
-            configuration.addResource("com/gre/model/Todo.hbm.xml");
-            configuration.addResource("com/gre/model/Reason.hbm.xml");
-            configuration.addResource("com/gre/model/Status.hbm.xml");
-            configuration.configure();
+      if (sessionFactory == null) {
+         Configuration configuration = new Configuration();
+         configuration.configure();
 
-            serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+         serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        }
+         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+      }
 
-        return sessionFactory;
-    }
+      return sessionFactory;
+   }
 
-    /**
-     * Retrieves the current hibernate session
-     * 
-     * @author Lee
-     */
-    public Session getSession() {
+   /**
+    * Use getCurrentSession and let Hibernate manage the opening and closing of session
+    * 
+    * @author Lee
+    * @return Hibernate session
+    * */
+   public Session getSession() {
 
-        if (session == null) {
+         session = initSessionFactory().getCurrentSession();
 
-            session = initSessionFactory().openSession();
+      return session;
+   }
 
-        } else {
+   public void shutdown() {
 
-            session = initSessionFactory().getCurrentSession();
-
-        }
-
-        return session;
-    }
-
-    /**
-     * This method will close the current Hibernate session
-     * 
-     * @author Lee
-     */
-    public void shutdown() {
-        initSessionFactory().close();
-    }
+      initSessionFactory().close();
+   }
 }

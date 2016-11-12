@@ -1,13 +1,13 @@
 package com.gre.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.GenerationType;
-
-import java.util.Date;
 
 /**
  * 
@@ -22,14 +22,14 @@ import java.util.Date;
 public class Todo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="todoId")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="todoid")
     int todoId;
 	
-	@Column(name="projectName")
+	@Column(name="projectname")
     String projectName;
 	
-	@Column(name="projectOwner")
+	@Column(name="projectowner")
     String projectOwner;
 	
 	@Column(name="statusId")
@@ -44,19 +44,19 @@ public class Todo {
 	@Column(name="priority")
 	String priority;
 	
-	@Column(name="completionDate")
+	@Column(name="completiondate")
     Date completionDate;
 	
-	@Column(name="updatedBy")
+	@Column(name="updatedby")
     String updatedBy;
 	
-	@Column(name="createdBy")
+	@Column(name="createdby")
     String createdBy;
 	
-	@Column(name="updatedDate")
+	@Column(name="updateddate")
     Date updatedDate;
 	
-	@Column(name="createdDate")
+	@Column(name="createddate")
     Date createdDate;
     
 	public int getTodoId() {

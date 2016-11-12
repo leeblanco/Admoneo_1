@@ -42,7 +42,7 @@
 		<jetty9.version>9.2.19.v20160908</jetty9.version>
 		<log4j.version>2.6.2</log4j.version>
 		<junit.version>4.12</junit.version>
-		<hibernate.version>5.2.1.Final</hibernate.version>
+		<hibernate.version>4.3.11.Final</hibernate.version>
 		<postgresql.version>9.4-1200-jdbc41</postgresql.version>
 		<hibernate-persistence.version>1.0.1.Final</hibernate-persistence.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
