@@ -54,8 +54,9 @@
             <p>Welcome to Admon Status Page</p>
          </div>
       </div>
+      <div class="row" wicket:id="pagingNavigator"></div>
       <div class="row">
-         <table class="table table-bordered">
+         <table class="table table-bordered dataview">
             <thead>
                <tr>
                   <th>Task Id</th>
@@ -73,19 +74,22 @@
                </tr>
             </thead>
             <tbody>
-               <tr wicket:id="taskList">
-                  <td wicket:id="todoid">[todoid]</td>
-                  <td wicket:id="projectname">[projectname]</td>
-                  <td wicket:id="projectowner">[projectowner]</td>
-                  <td wicket:id="statusid">[statusid]</td>
-                  <td wicket:id="reasonid">[reasonid]</td>
-                  <td wicket:id="description">[description]</td>
-                  <td wicket:id="priority">[priority]</td>
-                  <td wicket:id="completiondate">[completiondate]</td>
-                  <td wicket:id="createddate">[createddate]</td>
-                  <td wicket:id="updateddate">[updateddate]</td>
-                  <td wicket:id="createdby">[createdby]</td>
-                  <td wicket:id="updatedby">[updatedby]</td>
+               <tr wicket:id="rows">
+                  <td wicket:id="dataRow"></td>
+                  <!-- 
+                  <td wicket:id="taskid">taskid</td>
+                  <td wicket:id="projectname">projectname</td>
+                  <td wicket:id="projectowner">projectowner</td>
+                  <td wicket:id="statusid">statusid</td>
+                  <td wicket:id="reasonid">reasonid</td>
+                  <td wicket:id="description">description</td>
+                  <td wicket:id="priority">priority</td>
+                  <td wicket:id="completiondate">completiondate</td>
+                  <td wicket:id="createddate">createddate</td>
+                  <td wicket:id="updateddate">updateddate</td>
+                  <td wicket:id="createdby">createdby</td>
+                  <td wicket:id="updatedby">updatedby</td>
+                   -->
                </tr>
             </tbody>
          </table>
