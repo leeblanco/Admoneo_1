@@ -183,7 +183,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          logger.info("Retrieve all tasks from Todo table ");
 
          StringBuffer sql = new StringBuffer();
-         sql.append("select projectName, projectOwner, statusId, reasonId, description, priority, ");
+         sql.append("select todoId, projectName, projectOwner, statusId, reasonId, description, priority, ");
          sql.append("completionDate, createdDate, updatedDate, createdBy, updatedBy from Todo");
          // todoList = session.createQuery("from Todo").list();
 
@@ -223,7 +223,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          StringBuilder sql = new StringBuilder();
-         sql.append("select projectName, projectOwner, statusId, reasonId,");
+         sql.append("select todoId, projectName, projectOwner, statusId, reasonId,");
          sql.append("description, priority, completionDate, createdDate, updatedDate,");
          sql.append("createdBy, updatedBy from com.gre.model.Todo where projectName like :projectname");
 
@@ -267,7 +267,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          StringBuilder sql = new StringBuilder();
-         sql.append("select projectName, projectOwner, statusId, reasonId,");
+         sql.append("select todoId, projectName, projectOwner, statusId, reasonId,");
          sql.append("description, priority, completionDate, createdDate, updatedDate,");
          sql.append("createdBy, updatedBy from Todo where projectOwner like :projectowner");
 

@@ -70,6 +70,7 @@ public class TestTodoServices {
       task.setReasonId(2);
       task.setStatusId(1);
       task.setPriority("High");
+      task.setDescription("This is still a test");
       task.setCompletionDate(new Date());
       task.setCreatedBy("Dimas");
       task.setUpdatedBy(util.randomDataGen());
@@ -79,6 +80,33 @@ public class TestTodoServices {
       status = todoMgr.addTodo(task);
       
       logger.info("Status : "+ status);
+      
+   }
+   
+   @Test
+   public void TestUpdateTaskService() {
+      
+      TodoService todoMgr = new TodoServiceImpl();
+      
+      Todo task = new Todo();
+      
+      boolean status = false;
+      
+      task.setProjectName("Testing");
+      task.setProjectOwner(util.randomDataGen());
+      task.setReasonId(2);
+      task.setStatusId(1);
+      task.setPriority("High");
+      task.setCompletionDate(new Date());
+      task.setCreatedBy("Dimas");
+      task.setUpdatedBy(util.randomDataGen());
+      task.setCreatedDate(new Date());
+      task.setUpdatedDate(new Date());
+      
+      status = todoMgr.updateTodo(task);
+      
+      logger.info("Status : "+ status);
+
       
    }
 }

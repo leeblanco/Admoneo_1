@@ -19,55 +19,89 @@
 </head>
 
 <body>
-    <!-- 
+   <!-- 
     <header>
         <nav wicket:id="navigation"></nav>
     </header>
      -->
- 
-	<nav class="navbar navbar-inverse navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Admoneo</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="#" wicket:id="Home">Home</a></li>
-					<li><a href="#" wicket:id="Task">Task</a></li>
-					<li><a href="#" wicket:id="Status">Status</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><h1>Golden Real Estate</h1></li>
-				</ul>
-			</div>
 
-		</div>
-	</nav>
+   <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+               data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+               <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
+                  class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Admoneo</a>
+         </div>
+         <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+               <li><a href="#" wicket:id="Home">Home</a></li>
+               <li><a href="#" wicket:id="Task">Task</a></li>
+               <li><a href="#" wicket:id="Status">Status</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li><h1>Golden Real Estate</h1></li>
+            </ul>
+         </div>
 
-    <div class="row">
-        	<!-- Welcome page and introduction -->
-        <div class="jumbotron">  
-		    <h2>Welcome to Admon Status Page</h2>
-		</div>
-    </div>
-	<!-- /container -->
-
-
-	<!-- Bootstrap core JavaScript
+      </div>
+   </nav>
+   <div class="container">
+      <div class="row">
+         <div class="jumbotron">
+            <p>Welcome to Admon Status Page</p>
+         </div>
+      </div>
+      <div class="row">
+         <table class="table table-bordered">
+            <thead>
+               <tr>
+                  <th>Task Id</th>
+                  <th>Project Name</th>
+                  <th>Project Owner</th>
+                  <th>Status ID</th>
+                  <th>Reason ID</th>
+                  <th>Description</th>
+                  <th>Completion Date</th>
+                  <th>Priority</th>
+                  <th>Created Date</th>
+                  <th>Updated Date</th>
+                  <th>Created By</th>
+                  <th>Updated By</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr wicket:id="taskList">
+                  <td wicket:id="todoid">[todoid]</td>
+                  <td wicket:id="projectname">[projectname]</td>
+                  <td wicket:id="projectowner">[projectowner]</td>
+                  <td wicket:id="statusid">[statusid]</td>
+                  <td wicket:id="reasonid">[reasonid]</td>
+                  <td wicket:id="description">[description]</td>
+                  <td wicket:id="priority">[priority]</td>
+                  <td wicket:id="completiondate">[completiondate]</td>
+                  <td wicket:id="createddate">[createddate]</td>
+                  <td wicket:id="updateddate">[updateddate]</td>
+                  <td wicket:id="createdby">[createdby]</td>
+                  <td wicket:id="updatedby">[updatedby]</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+      <!-- Bootstrap core JavaScript
     ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	<script src="../../dist/js/bootstrap.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+   <!-- Placed at the end of the document so the pages load faster -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script>
+				window.jQuery
+						|| document
+								.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			</script>
+   <script src="../../dist/js/bootstrap.min.js"></script>
+   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

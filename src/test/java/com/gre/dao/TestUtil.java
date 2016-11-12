@@ -67,6 +67,7 @@ public class TestUtil {
 
       for (Todo entry : listOfTodo) {
 
+         logger.info("Todo Id: "+ entry.getTodoId());
          logger.info("Project Owner: " + entry.getProjectOwner());
          logger.info("Project Name : " + entry.getProjectName());
          logger.info("Status : " + entry.getStatusId());
