@@ -1,4 +1,4 @@
-package com.gre;
+package com.gre.ui;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;

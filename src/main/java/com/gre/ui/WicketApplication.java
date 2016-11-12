@@ -1,7 +1,9 @@
-package com.gre;
+package com.gre.ui;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
+
+import com.gre.Start;
 
 /**
  * Application object for your web application.

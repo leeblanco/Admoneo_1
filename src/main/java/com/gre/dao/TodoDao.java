@@ -1,6 +1,6 @@
 package com.gre.dao;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.gre.model.Todo;

@@ -1,4 +1,4 @@
-package com.gre;
+package com.gre.ui;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.gre;
+package com.gre.ui;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.ajax.AjaxRequestTarget;

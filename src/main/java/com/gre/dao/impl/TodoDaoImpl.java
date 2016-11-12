@@ -1,7 +1,7 @@
 package com.gre.dao.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -14,12 +14,15 @@ import org.hibernate.criterion.Restrictions;
 import org.jboss.logging.Logger;
 
 import com.gre.dao.TodoDao;
+import com.gre.dao.util.DaoUtil;
 import com.gre.dao.util.HibernateSession;
 import com.gre.model.Todo;
 
 public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
    final static Logger logger = Logger.getLogger(UserDaoImpl.class);
+
+   private DaoUtil daoUtil = new DaoUtil();
 
    /**
     * Adds new task in Todo table using the input param task. Returns true if
@@ -42,8 +45,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
          try {
 
-            Transaction trans = session.getTransaction();
-            trans.begin();
+            Transaction trans = session.beginTransaction();
 
             // Set newStatus object with the new input parameters from
             // status input param
@@ -112,8 +114,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
          try {
 
-            Transaction trans = session.getTransaction();
-            trans.begin();
+            Transaction trans = session.beginTransaction();
 
             // Set Task object with the new input parameters from status
             // input param
@@ -180,7 +181,17 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          logger.info("Retrieve all tasks from Todo table ");
-         todoList = session.createQuery("from Todo").list();
+
+         StringBuffer sql = new StringBuffer();
+         sql.append("select projectName, projectOwner, statusId, reasonId, description, priority, ");
+         sql.append("completionDate, createdDate, updatedDate, createdBy, updatedBy from Todo");
+         // todoList = session.createQuery("from Todo").list();
+
+         Query query = session.createQuery(sql.toString());
+         List<Object> retrievedTodo = (List<Object>) query.list();
+         logger.debug("RetrievedUserList contains : " + retrievedTodo.size());
+
+         todoList.addAll(daoUtil.populateTodoList(retrievedTodo));
 
          tx.commit();
 
@@ -188,12 +199,7 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
 
          logger.error("Error in retrieving tasks from todo table " + hEx);
 
-      } finally {
-
-         session.close();
-
       }
-
       return todoList;
    }
 
@@ -217,29 +223,25 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          StringBuilder sql = new StringBuilder();
-         sql.append("select todoId, projectname, projectowner, statusid, reasonid,");
-         sql.append("description, completionDate, createdDate, updatedDate,");
-         sql.append("createdBy, updatedBy from Todo where projectname like ?1");
+         sql.append("select projectName, projectOwner, statusId, reasonId,");
+         sql.append("description, priority, completionDate, createdDate, updatedDate,");
+         sql.append("createdBy, updatedBy from com.gre.model.Todo where projectName like :projectname");
 
          logger.info("SQL Query to retrieve list of tasks based on project name search parameter: " + sql.toString());
 
          Query query = session.createQuery(sql.toString());
-         query.setParameter(1, "%" + projectName + "%");
+         query.setParameter("projectname", "%" + projectName + "%");
 
-         int noOfResult = query.executeUpdate();
-         logger.debug("Number of results returned: " + noOfResult);
+         List<Object> retrievedTodo = (List<Object>) query.list();
+         logger.debug("RetrievedUserList contains : " + retrievedTodo.size());
 
-         listOfTasks = query.list();
+         listOfTasks.addAll(daoUtil.populateTodoList(retrievedTodo));
 
          tx.commit();
 
       } catch (HibernateException hEx) {
 
          logger.error("There is a problem retrieving tasks using projectname " + hEx);
-
-      } finally {
-
-         session.close();
 
       }
 
@@ -265,29 +267,25 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
          Transaction tx = session.beginTransaction();
 
          StringBuilder sql = new StringBuilder();
-         sql.append("select t.todoId, t.projectname, t.projectowner, t.statusid, t.reasonid,");
-         sql.append("t.description, t.priority, t.completionDate, t.createdDate, t.updatedDate,");
-         sql.append("t.createdBy, t.updatedBy from todo t where t.projectowner like ?1");
+         sql.append("select projectName, projectOwner, statusId, reasonId,");
+         sql.append("description, priority, completionDate, createdDate, updatedDate,");
+         sql.append("createdBy, updatedBy from Todo where projectOwner like :projectowner");
 
-         logger.info("SQL Query to retrieve list of tasks based on project owner search parameter: " + sql.toString());
+         logger.info("SQL Query to retrieve list of tasks based on project name search parameter: " + sql.toString());
 
          Query query = session.createQuery(sql.toString());
-         query.setParameter(1, "%" + projectOwner + "%");
+         query.setParameter("projectowner", "%" + projectOwner + "%");
 
-         int noOfResult = query.executeUpdate();
-         logger.debug("Number of results returned: " + noOfResult);
+         List<Object> retrievedTodo = (List<Object>) query.list();
+         logger.debug("RetrievedUserList contains : " + retrievedTodo.size());
 
-         listOfTasks = query.list();
+         listOfTasks.addAll(daoUtil.populateTodoList(retrievedTodo));
 
          tx.commit();
 
       } catch (HibernateException hEx) {
 
          logger.error("There is a problem retrieving tasks using project Owner " + hEx);
-
-      } finally {
-
-         session.close();
 
       }
 
@@ -331,10 +329,6 @@ public class TodoDaoImpl extends HibernateSession implements TodoDao {
       } catch (HibernateException hEx) {
 
          logger.error("There is a problem retrieving tasks using project Owner " + hEx);
-
-      } finally {
-
-         session.close();
 
       }
 

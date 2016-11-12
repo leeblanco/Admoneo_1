@@ -1,4 +1,4 @@
-package com.gre;
+package com.gre.ui;
 
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.panel.Panel;
