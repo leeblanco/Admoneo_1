@@ -60,12 +60,22 @@
                      <input wicket:id="taskStatus" type="text" class="form-control" id="taskStatus">
                   </div>
                </div>
+               <div class="form-group">
+                  <label for="taskDescription" class="form-control-dimaz">Description</label>
+               </div>
+               <div class="row">
+                  <div class="col-xs-4">
+                     <textarea class="form-control" wicket:id="taskDescription" rows="5" id="taskDescription"></textarea>
+                  </div>
+               </div>
+               <!-- 
                <div class="row">
                   <select wicket:id="priority"></select>
                </div>
+               -->
                <div class="row">
                   <button type="submit" class="btn btn-default">Submit</button>
-                  <p wicket:id="loginStatus"></p>
+                  <p wicket:id="submitStatus"></p>
                </div>
             </form>
          </div>
