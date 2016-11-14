@@ -94,20 +94,21 @@ public class ReminderPage extends WebPage {
          @Override
          public void onClose(AjaxRequestTarget target) {
             
-//            target.add(result);
-            
+//            target.add(new Status());
+            //setResponsePage(new Status());
          }
       });
       
-      createNewTaskModal.setCloseButtonCallback(new ModalWindow.CloseButtonCallback() {
+      /*createNewTaskModal.setCloseButtonCallback(new ModalWindow.CloseButtonCallback() {
          
          @Override
          public boolean onCloseButtonClicked(AjaxRequestTarget target) {
             
             setResult("Window is closed");
+            target.add(new Status());
             return false;
          }
-      });
+      });*/
       
       add(new AjaxLink<Void>("CreateNew") {
          

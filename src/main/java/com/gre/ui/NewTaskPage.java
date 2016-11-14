@@ -29,7 +29,18 @@ public class NewTaskPage extends WebPage {
 
       add(new RegisterForm("newTaskForm"));
       // add( new PriorityDropDown("priority"));
-
+      
+      /*add(new AjaxLink("close") {
+         
+         @Override
+         public void onClick(AjaxRequestTarget target) {
+            
+            if (modalWindow != null) {
+               modalWindow.close(target);
+            }
+         }
+      });*/
+      
    }
 
    private class RegisterForm extends Form {
@@ -127,9 +138,9 @@ public class NewTaskPage extends WebPage {
             submitStatus.setDefaultModelObject("Task was not added");
 
          }
-
+         
          logger.info("Redirect to Status page ");
-         setResponsePage(new Status());
+//         setResponsePage(new Status());
 
       }
    }
