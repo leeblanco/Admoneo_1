@@ -35,69 +35,111 @@
                <li><a href="#" wicket:id="Task">Task</a></li>
                <li><a href="#" wicket:id="Status">Status</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-               <li><h1>Golden Real Estate</h1></li>
+            <ul class="nav navbar-right">
+               <li><h2 class="text-danger">Golden Real Estate</h2></li>
             </ul>
          </div>
       </div>
    </nav>
 
-
-   <div class="row">
-      <div class="col-md-7">
-         <!-- Welcome page and introduction -->
-         <div class="jumbotron">
-            <h2>Welcome to Admon</h2>
+   <!-- <div class="row"> -->
+   <div class="col-lg-6">
+      <!-- Welcome page and introduction -->
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-5">
+               <h2>Welcome to Admon</h2>
+            </div>
          </div>
-      </div>
-      <div class="col-md-5">
-         <div class="container">
-            <form id="registerForm" method="get" wicket:id="registerForm">
-               <div class="form-group">
-                  <label for="firstName" class="form-control-dimaz">First Name</label>
-               </div>
-               <div class="row">
-                  <div class="col-xs-4">
-                     <input wicket:id="firstName" type="text" class="form-control" id="firstName">
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="lastName" class="form-control-dimaz">Last Name</label>
-               </div>
-               <div class="row">
-                  <div class="col-xs-4">
-                     <input wicket:id="lastName" type="text" class="form-control" id="lastName">
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="email" class="form-control-dimaz">Email address</label>
-               </div>
-               <div class="row">
-                  <div class="col-xs-4">
-                     <input wicket:id="email" type="text" class="form-control" id="email">
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label for="token" class="form-control-dimaz">Token</label>
-               </div>
-               <div class="row">
-                  <div class="col-xs-4">
-                     <input wicket:id="token" type="password" class="form-control" id="token"
-                        placeholder="Password">
-                  </div>
-               </div>
-               <button type="submit" class="btn btn-default">Submit</button>
-               <p wicket:id="loginStatus"></p>
-            </form>
+         <div class="row">
+            <div class="col-lg-5">
+               <p>This simple TODO web application that allows you to do the following.</p>
+               <ul>
+                  <li>Create, modify and delete tasks</li>
+                  <li>Task Collaboration</li>
+                  <li>Retrieve task history</li>
+               </ul>
+               <p class="text-justify">All you need to do is register and you can post your
+                  tasks. Once you are registered you will be taken to the Task page where you can
+                  enter your task.</p>
+               <p>
+                  <b>Important</b> please don't forget the token you entered during registration
+                  process.
+               </p>
+               <p class="text-justify">The token plays an important role in creating or
+                  modifying tasks and collaborating with other users. Only those users whom you want
+                  to collaborate with can modify your tasks. Do note that this is still a beta
+                  release and token feature is not yet available.</p>
+               <br>
+               <p>On our future releases we are expecting the following features to be available</p>
+               <ul>
+                  <li>Token Feature</li>
+                  <li>Set Reminder</li>
+                  <li>Reminder notification via mail</li>
+                  <li>Improved task search</li>
+                  <li>Improved reporting</li>
+               </ul>
+               <br>
+               <h5>Thank you for using the application</h5>
+               <p class="text-left">
+                  <b>Lee</b>
+               </p>
+            </div>
          </div>
       </div>
    </div>
+   <div class="col-lg-5">
+      <div class="container">
+         <form id="registerForm" method="get" wicket:id="registerForm">
+            <div class="row">
+               <div>
+                  <h3>Please register here</h3>
+               </div>
+            </div>
+            <div class="row">
+               <div class="form-group col-lg-3">
+                  <label for="firstName">First Name</label> <input wicket:id="firstName" type="text"
+                     class="form-control" id="firstName">
+               </div>
+            </div>
+            <div class="row">
+               <div class="form-group col-lg-3">
+                  <label for="lastName">Last Name</label> <input wicket:id="lastName" type="text"
+                     class="form-control" id="lastName">
+               </div>
+            </div>
+            <div class="row">
+               <div class="form-group col-lg-3">
+                  <label for="email">Email address</label> <input wicket:id="email" type="text"
+                     class="form-control" id="email">
+               </div>
+            </div>
+            <div class="row">
+               <div class="form-group col-lg-3">
+                  <label for="token">Token</label> <input wicket:id="token" type="password"
+                     class="form-control" id="token" placeholder="Password">
+               </div>
+            </div>
+            <div class="row">
+               <div class="form-group col-lg-3">
+                  <button type="submit" class="btn btn-default">Submit</button>
+               </div>
+            </div>
+            <p wicket:id="loginStatus"></p>
+         </form>
+      </div>
+   </div>
+   <!-- </div> -->
 
    <!-- Bootstrap core JavaScript
     ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+   <script>
+				window.jQuery
+						|| document
+								.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			</script>
    <script src="../../dist/js/bootstrap.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>

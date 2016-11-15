@@ -21,33 +21,48 @@ import com.gre.service.impl.TodoServiceImpl;
 
 public class NewTaskPage extends WebPage {
 
+   private static final long serialVersionUID = 1L;
+
    private static final Logger logger = Logger.getLogger(NewTaskPage.class);
-   
-   public NewTaskPage(final PageReference mainWindowPageRef,final ModalWindow modalWindow) {
+
+   public NewTaskPage(final PageReference mainWindowPageRef, final ModalWindow modalWindow) {
+
+      add(new RegisterForm("newTaskForm"));
+      // add( new PriorityDropDown("priority"));
       
-     add( new RegisterForm("newTaskForm")); 
-//     add( new PriorityDropDown("priority"));
-     
+      /*add(new AjaxLink("close") {
+         
+         @Override
+         public void onClick(AjaxRequestTarget target) {
+            
+            if (modalWindow != null) {
+               modalWindow.close(target);
+            }
+         }
+      });*/
+      
    }
-   
+
    private class RegisterForm extends Form {
 
+      private static final long serialVersionUID = 1L;
+      
       private TextField<String> projectNameField;
       private TextField<String> projectOwnerField;
       private TextField<String> statusField;
       private TextField<String> reasonField;
       private TextArea<String> descriptionField;
-      
+
       private Label submitStatus;
       private Label textFieldLbl;
-      
+
       DateTextField completionDate;
-      
+
       private final Locale LOCALE_EN = new Locale("en");
       private Locale selectedLocale = LOCALE_EN;
-      
+
       PriorityDropDown priority;// = new PriorityDropDown("priority");
-      
+
       /**
        * RegisterForm constructor initializes register fields available in the
        * reminder page create new task.
@@ -57,24 +72,24 @@ public class NewTaskPage extends WebPage {
       public RegisterForm(String id) {
 
          super(id);
-         
+
          projectNameField = new TextField<String>("projectName", Model.of(""));
          projectOwnerField = new TextField<String>("projectOwner", Model.of(""));
          statusField = new TextField<String>("taskStatus", Model.of(""));
          reasonField = new TextField<String>("taskReason", Model.of(""));
          descriptionField = new TextArea<String>("taskDescription", Model.of(""));
          submitStatus = new Label("submitStatus", Model.of(""));
-         textFieldLbl = new Label("taskDescription", Model.of(""));
-         
-         priority = new PriorityDropDown("priority");
-         
+//         textFieldLbl = new Label("taskDescription", Model.of(""));
+//         priority = new PriorityDropDown("priority");
+
          add(projectNameField);
          add(projectOwnerField);
          add(statusField);
          add(reasonField);
          add(submitStatus);
-         add(textFieldLbl);
-         add(priority);
+         add(descriptionField);
+//         add(textFieldLbl);
+//         add(priority);
 
       }
 
@@ -101,17 +116,16 @@ public class NewTaskPage extends WebPage {
          String description = descriptionField.toString();
 
          logger.info("Setting user object setter fields");
-         
+
          task.setProjectName(projName);
          task.setProjectOwner(projOwner);
          task.setReasonId(Integer.parseInt(reason));
          task.setStatusId(Integer.parseInt(status));
          task.setDescription(description);
 
-         logger.info("Project Name: "+ projName+ " Project Owner: "+ projOwner+ " Reason: "+ reason +
-               " Status: "+ status + " Description: "+ description +
-               " Completion Date: "+ task.getCompletionDate() );
-         
+         logger.info("Project Name: " + projName + " Project Owner: " + projOwner + " Reason: " + reason + " Status: "
+               + status + " Description: " + description + " Completion Date: " + task.getCompletionDate());
+
          // Add registered user in DB
          txStatus = taskMgr.addTodo(task);
 
@@ -126,8 +140,8 @@ public class NewTaskPage extends WebPage {
          }
          
          logger.info("Redirect to Status page ");
-         setResponsePage(new Status());
-         
+//         setResponsePage(new Status());
+
       }
    }
 }

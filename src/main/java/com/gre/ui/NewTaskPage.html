@@ -21,9 +21,7 @@
 <body>
    <div class="row">
       <div class="col-md-7">
-         <div class="jumbotron">
-            <h2>New Task</h2>
-         </div>
+         <h2>New Task</h2>
       </div>
       <div class="col-md-5">
          <div class="container">
@@ -33,7 +31,8 @@
                </div>
                <div class="row">
                   <div class="col-xs-4">
-                     <input wicket:id="projectName" type="text" class="form-control" id="projectName">
+                     <input wicket:id="projectName" type="text" class="form-control"
+                        id="projectName">
                   </div>
                </div>
                <div class="form-group">
@@ -41,7 +40,8 @@
                </div>
                <div class="row">
                   <div class="col-xs-4">
-                     <input wicket:id="projectOwner" type="text" class="form-control" id="projectOwner">
+                     <input wicket:id="projectOwner" type="text" class="form-control"
+                        id="projectOwner">
                   </div>
                </div>
                <div class="form-group">
@@ -60,12 +60,24 @@
                      <input wicket:id="taskStatus" type="text" class="form-control" id="taskStatus">
                   </div>
                </div>
+               <div class="form-group">
+                  <label for="taskDescription" class="form-control-dimaz">Description</label>
+               </div>
+               <div class="row">
+                  <div class="col-xs-4">
+                     <textarea class="form-control" wicket:id="taskDescription" rows="5"
+                        id="taskDescription"></textarea>
+                  </div>
+               </div>
+               <!-- 
                <div class="row">
                   <select wicket:id="priority"></select>
                </div>
+               -->
                <div class="row">
                   <button type="submit" class="btn btn-default">Submit</button>
-                  <p wicket:id="loginStatus"></p>
+                  <p wicket:id="submitStatus"></p>
+                  <!-- <a wicket:id="close">Close</a> -->
                </div>
             </form>
          </div>
@@ -76,7 +88,11 @@
     ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+   <script>
+				window.jQuery
+						|| document
+								.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+			</script>
    <script src="../../dist/js/bootstrap.min.js"></script>
    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
